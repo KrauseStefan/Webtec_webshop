@@ -3,15 +3,15 @@
 }
 
 div {
-
   background: white;
   border-radius: 10px;
   padding: 5px;
 }
 
 .headder {
-  width: 90%;  
+  width: 100%;  
   margin: 0 auto;
+  padding: 0px;
 }
 
 .headder div {
@@ -20,15 +20,18 @@ div {
 
 .headder1 {
   position: relative;
-  height: 100px;
+  height: 50px;
+  margin-top:0px;
+  padding: 0px;
 }
 
 .headder2 {
   position: fixed;
-  top: 120px;
+  top: 50px;
   height: 100px;
   z-index: 100;
-  width: 89%;
+  width: 100%;
+  padding: 0px;
 }
 
 .pageContainer{
@@ -67,3 +70,8 @@ div {
 
 }
 
+.title {
+	text-align:center;
+	font-size:36px;
+	font-weight:700;
+}
