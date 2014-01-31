@@ -1,0 +1,67 @@
+* {
+  margin: 0; 
+}
+
+div {
+
+  background: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.headder {
+  border: thin solid black;
+  width: 90%;  
+  margin: 0 auto;
+}
+
+.headder {}
+
+.headder1 {
+  position: relative;
+  height: 100px;
+}
+
+.headder2 {
+  position: fixed;
+  top: 100px;
+  height: 100px;
+  z-index: 100;
+  width: 90%;
+}
+
+.pageContainer{
+  width: 950px;
+  position: relative;
+  top: 100px;
+  margin: 0 auto;
+}
+
+.page{
+    min-height: 1000px;
+}
+
+.sidebar{
+  width: 200px;
+}
+
+.leftSidebar {
+  position: relative;
+  height: 1000px;
+}
+
+.pageContainter {
+  position: relative;
+  top: 100px;
+  left: 200px;
+  height: 800px;
+  width: 600px;
+}
+
+.rightSidebar {
+  position: fixed;
+  height: 400px;
+  right: 0px;
+
+}
+
