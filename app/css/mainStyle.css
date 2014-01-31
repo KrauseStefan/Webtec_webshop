@@ -1,9 +1,7 @@
 * {
-  margin: 0; 
 }
 
 div {
-  background: white;
   border-radius: 10px;
   padding: 5px;
 }
@@ -12,10 +10,6 @@ div {
   width: 100%;  
   margin: 0 auto;
   padding: 0px;
-}
-
-.headder div {
-  border: thin solid black;
 }
 
 .headder1 {
@@ -27,23 +21,40 @@ div {
 
 .headder2 {
   position: fixed;
-  top: 50px;
-  height: 100px;
+  top: 55px;
+  height: 70px;
   z-index: 100;
   width: 100%;
   padding: 0px;
+  background: #70AD47;
+}
+.infoHeadder {
+  width: 950px;
+  margin: 15px auto;
+  background: white;
+}
+
+.infoHeadder>div{
+  display: -webkit-box;
+  float: right; 
+  padding: 3px 10px;
+}
+
+.infoHeadder a {
+    margin-left: 50px;
 }
 
 .pageContainer{
   width: 950px;
   position: relative;
-  top: 109px;
+  top: 75px;
   margin: 0 auto;
 }
 
 .page{
     border: thin solid black;
     min-height: 1000px;
+    width: 950px;
 }
 
 .sidebar{
