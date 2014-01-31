@@ -10,12 +10,13 @@ div {
 }
 
 .headder {
-  border: thin solid black;
   width: 90%;  
   margin: 0 auto;
 }
 
-.headder {}
+.headder div {
+  border: thin solid black;
+}
 
 .headder1 {
   position: relative;
@@ -24,20 +25,21 @@ div {
 
 .headder2 {
   position: fixed;
-  top: 100px;
+  top: 120px;
   height: 100px;
   z-index: 100;
-  width: 90%;
+  width: 89%;
 }
 
 .pageContainer{
   width: 950px;
   position: relative;
-  top: 100px;
+  top: 109px;
   margin: 0 auto;
 }
 
 .page{
+    border: thin solid black;
     min-height: 1000px;
 }
 
