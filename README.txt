@@ -1,1 +1,1 @@
-Url: http://llama13.cs.au.dk:1234
+Webshop url: http://llama13.cs.au.dk:12985/app/
