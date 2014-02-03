@@ -1,6 +1,8 @@
 Webtec_webshop
 ==============
 
+Webshop url: http://llama13.cs.au.dk:12985/app/ 
+
 
 Copy pasted from an other repository what do you think?
 
