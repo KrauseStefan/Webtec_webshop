@@ -3,19 +3,17 @@ package au.webtech;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.jdom2.filter.Filters;
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
-import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -91,10 +89,13 @@ public class App {
 
 		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
 		createItem.addContent((new Element("itemName", ns)).setText(itemName));
-		
-		XMLOutputter out = new XMLOutputter();
+				
+		XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
+		out.getFormat().setOmitDeclaration(true);
 		String ouput = out.outputString(doc);
-		stream.writeChars(out.outputString(doc));
+		
+//		stream.writeChars(out.outputString(doc));
+		out.output(doc, stream);
 		stream.flush();
 		stream.close();
 		
@@ -113,13 +114,14 @@ public class App {
 		}
 		
 		input.close();
-		System.out.println(inputLine);
+		System.out.println(response.toString());
 	}
 	
 	private static void createItem(Document d) throws Exception {
 		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl+createUrl).openConnection();
 		connection.setRequestMethod("POST");
 		connection.setDoOutput(true);
+		connection.setRequestProperty("Content-type", "text/xml");
 		
 		SendDocumentToShop(connection, d);
 	}
