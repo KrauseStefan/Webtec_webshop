@@ -3,20 +3,29 @@ package au.webtech;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.jdom2.filter.Filters;
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 
 public class App {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
 	private final static String modifyUrl = "/modifyItem";
 	private final static String createUrl = "/createItem";
 	private final static String listUrl = "/listItems?shopID=194";
+	private final static String shopKey = "5247EFB974D2D4D06403F61B";
+	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 
 	/**
 	 * @param args
@@ -32,9 +41,9 @@ public class App {
 		}
 		
 		try {
-			SendDocumentToShop(d);
+			createItem(d);
 		} catch (Exception e) {
-			System.out.println("WOLLAH FUCK");
+			e.printStackTrace(); 
 		}
 	 }
 	
@@ -64,15 +73,16 @@ public class App {
 		 return null;
 	}
 	
-	private static void SendDocumentToShop(Document d) throws Exception {
-		
-		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl).openConnection();
-		connection.setRequestMethod("POST");
-		connection.setDoOutput(true);
-		
+	private static void SendDocumentToShop(HttpURLConnection connection, Document d) throws Exception {		
 		DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
 		
 		System.out.println("Writing to host");
+		
+		XPathFactory factory = XPathFactory.instance();
+		
+		Namespace ns = Namespace.getNamespace(namespaceUrl);
+		XPathExpression<Element> element = factory.compile("//itemName", Filters.element(), null, ns);
+		Object object = element.evaluateFirst(d);
 		
 		XMLOutputter out = new XMLOutputter();
 		stream.writeChars(out.outputString(d));
@@ -95,5 +105,21 @@ public class App {
 		
 		input.close();
 		System.out.println(inputLine);
+	}
+	
+	private static void createItem(Document d) throws Exception {
+		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl+createUrl).openConnection();
+		connection.setRequestMethod("POST");
+		connection.setDoOutput(true);
+		
+		SendDocumentToShop(connection, d);
+	}
+	
+	private static void modifyItem(Document d) throws Exception {
+		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl+modifyUrl).openConnection();
+		connection.setRequestMethod("POST");
+		connection.setDoOutput(true);
+		
+		SendDocumentToShop(connection, d);
 	}
 }
