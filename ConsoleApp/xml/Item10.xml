@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns="http://www.cs.au.dk/dWebTek/2014">
+	<item>
+		<itemID>1</itemID>
+		<itemName>Triumf buen</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>10100</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>2</itemID>
+		<itemName>Eiffeltårnet</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>12000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>3</itemID>
+		<itemName>Frihedsgudinden</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>190000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>4</itemID>
+		<itemName>Big ben</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>9000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>5</itemID>
+		<itemName>Mount Rushmore</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>21344</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>6</itemID>
+		<itemName>Himmel bjerget</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>2000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>7</itemID>
+		<itemName>Det skæve tårn i Pisa</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>6000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>8</itemID>
+		<itemName>Egyptisk pyramide</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>3000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>9</itemID>
+		<itemName>Kreml</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>2000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+	<item>
+		<itemID>10</itemID>
+		<itemName>Månen</itemName>
+		<itemURL>./direct/url</itemURL>
+		<itemPrice>1000000</itemPrice>
+		<itemStock>1</itemStock>
+		<itemDescription>
+			<document>
+				This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+				<list>
+					<item>it is cool looking</item>
+					<item>it is truly <bold>unique</bold></item>
+					<item>it is in space</item>
+					<item>it is astronomically large</item>
+				</list>
+			</document>
+		</itemDescription>
+	</item>
+</items>
