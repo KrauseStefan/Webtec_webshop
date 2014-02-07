@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
-import javax.swing.text.Document;
-
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.Document;
 
 public class App {
 
@@ -33,13 +32,16 @@ public class App {
 					 new File(args[1])); 
 			 String msg = "No errors!"; 
 			 try { 
-				 Document d = (Document) b.build(new File(args[0])); 
+				 Document d = b.build(new File(args[0])); 
+				 System.out.println(msg);
 				 return d;
 			 } catch (JDOMParseException e ) { 
 				 msg = e.getMessage(); 
 			 } 
 			 System.out.println(msg); 
-		 } catch (Exception e) { e.printStackTrace(); } 
+		 } catch (Exception e) { 
+			 e.printStackTrace(); 
+		 } 
 		 return null;
 	}
 	
