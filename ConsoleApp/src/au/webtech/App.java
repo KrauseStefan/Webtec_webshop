@@ -88,13 +88,13 @@ public class App {
 		
 		Element createItem = new Element("createItem", ns);
 		Document doc = new Document(createItem);
-		//doc.setDocType(new DocType());
 
 		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
 		createItem.addContent((new Element("itemName", ns)).setText(itemName));
 		
 		XMLOutputter out = new XMLOutputter();
-		stream.writeChars(out.outputString(d));
+		String ouput = out.outputString(doc);
+		stream.writeChars(out.outputString(doc));
 		stream.flush();
 		stream.close();
 		
