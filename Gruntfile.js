@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 		watch: {
 			htmlToIrpt : {
 				files: ['**/*.tmpl.jade'],
-				tasks: ['clear', 'jade', 'sass'],
+				tasks: ['clear', 'jade', 'sass', 'validation'],
 				options: {
 					livereload: true,
 					spawn: false

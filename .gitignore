@@ -5,5 +5,6 @@
 *.war
 *.ear
 *.json
+Handin*.zip
 
 node_modules
