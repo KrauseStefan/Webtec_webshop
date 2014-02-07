@@ -65,12 +65,17 @@ public class App {
 		
 		DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
 		
+		System.out.println("Writing to host");
+		
 		XMLOutputter out = new XMLOutputter();
 		stream.writeChars(out.outputString(d));
 		stream.flush();
 		stream.close();
 		
 		int responseCode = connection.getResponseCode();
+		
+		System.out.println("ResponseCode: " + responseCode);
+		System.out.println("Reading input:");
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine = "";
