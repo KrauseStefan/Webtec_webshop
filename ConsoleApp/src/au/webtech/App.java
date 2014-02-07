@@ -22,12 +22,19 @@ public class App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Document d = null;//ValidateDocument(args);
+		Document d = ValidateDocument(args);
+		
+		String rootName = d.getRootElement().getName();
+		
+		if(rootName != "item") {
+			System.out.println("Root element is not 'item'!");
+			return;
+		}
 		
 		try {
 			SendDocumentToShop(d);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("WOLLAH FUCK");
 		}
 	 }
 	
