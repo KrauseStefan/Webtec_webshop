@@ -1,0 +1,16 @@
+<modifyItem xmlns="http://www.cs.au.dk/dWebTek/2014">
+  <shopKey>a66hd77hhjajaj86s+21hhd</shopKey>
+  <itemID>271</itemID>
+  <itemName>Stetson Cowboy Hat</itemName>
+  <itemPrice>947</itemPrice>
+  <itemURL>http://upload.wikimedia.org/wikipedia/commons/8/8b/StetsonHatFortHoodArmy.jpg</itemURL>
+  <itemDescription><document>
+      This <italics>authentic</italics> cavalery hat has several advantages:
+  <list>
+     <item>it is cool looking</item>
+     <item>it is <bold>black</bold></item>
+     <item>it can be used in all kinds of weather</item>
+  </list>
+  </document></itemDescription>
+</modifyItem>
+

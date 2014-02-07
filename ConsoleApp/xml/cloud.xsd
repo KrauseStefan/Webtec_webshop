@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.cs.au.dk/dWebTek/2014"
+		xmlns:w="http://www.cs.au.dk/dWebTek/2014"
+		elementFormDefault="qualified"> 
+		
+	<!--  Command/query arguments --> 
+	<element name="sellItems" type="w:sellItems"/> 
+	<complexType name="sellItems"> 
+		<all> 
+			<element ref="w:shopKey"/> 
+			<element ref="w:itemID"/> 
+			<element ref="w:customerID"/> 
+			<element ref="w:saleAmount"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="adjustItemStock" type="w:adjustItemStock"/> 
+	<complexType name="adjustItemStock"> 
+		<all> 
+			<element ref="w:shopKey"/> 
+			<element ref="w:itemID"/> 
+			<element name="adjustment" type="integer"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="modifyItem" type="w:modifyItem"/> 
+	<complexType name="modifyItem"> 
+           <!-- fixme: missing --> 
+	</complexType> 
+	
+	<element name="login" type="w:login"/> 
+	<complexType name="login"> 
+		<all> 
+			<element ref="w:customerName"/> 
+			<element ref="w:customerPass"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="createItem" type="w:createItem"/> 
+	<complexType name="createItem"> 
+		<all> 
+			<element ref="w:shopKey"/> 
+			<element ref="w:itemName"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="createCustomer" type="w:createCustomer"/> 
+	<complexType name="createCustomer"> 
+		<all> 
+			<element ref="w:shopKey"/> 
+			<element ref="w:customerName"/> 
+			<element ref="w:customerPass"/> 
+		</all> 
+	</complexType> 
+	
+	<!--  Command responses --> 
+	<element name="createCustomerResponse" type="w:createCustomerResponse"/> 
+	<complexType name="createCustomerResponse"> 
+		<choice> 
+			<element ref="w:customerID"/> 
+			<element name="usernameTaken" type="w:empty"/> 
+		</choice> 
+	</complexType> 
+	<element name="saleResponse" type="w:saleResponse"/> 
+	<complexType name="saleResponse"> 
+		<choice> 
+			<element name="ok" type="w:empty"/> 
+			<element name="itemSoldOut" type="w:empty"/> 
+			<element name="error" type="w:empty"/> 
+		</choice> 
+	</complexType> 
+	<element name="loginResponse" type="w:loginResponse"/> 
+	<complexType name="loginResponse"> 
+		<all> 
+			<element ref="w:customerID"/> 
+			<element ref="w:customerName"/> 
+		</all> 
+	</complexType> 
+	
+	<!--  Other stuff --> 
+	<complexType name="empty"> 
+		<sequence/> 
+	</complexType> 
+	<element name="items" type="w:items"/> 
+	<complexType name="items"> 
+		<sequence minOccurs="0" maxOccurs="unbounded"> 
+			<element ref="w:item"/> 
+		</sequence> 
+	</complexType> 
+	<element name="shops" type="w:shops"/> 
+	<complexType name="shops"> 
+		<sequence minOccurs="0" maxOccurs="unbounded"> 
+			<element ref="w:shop"/> 
+		</sequence> 
+	</complexType> 
+	<element name="sales" type="w:sales"/> 
+	<complexType name="sales"> 
+		<sequence minOccurs="0" maxOccurs="unbounded"> 
+			<element ref="w:sale"/> 
+		</sequence> 
+	</complexType> 
+	<element name="customers" type="w:customers"/> 
+	<complexType name="customers"> 
+		<sequence minOccurs="0" maxOccurs="unbounded"> 
+			<element ref="w:customer"/> 
+		</sequence> 
+	</complexType> 
+	
+	<element name="item" type="w:item"/> 
+	<complexType name="item"> 
+		<all> 
+			<element ref="w:itemID"/> 
+			<element ref="w:itemName"/> 
+			<element ref="w:itemURL"/> 
+			<element ref="w:itemPrice"/> 
+			<element ref="w:itemStock"/> 
+			<element ref="w:itemDescription"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="shop" type="w:shop"/> 
+	<complexType name="shop"> 
+		<all> 
+			<element ref="w:shopID"/>
+			<element ref="w:shopName"/> 
+			<element ref="w:shopURL"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="sale" type="w:sale"/> 
+	<complexType name="sale"> 
+		<all> 
+			<element ref="w:saleTime"/> 
+			<element ref="w:saleAmount"/> 
+			<element ref="w:shopID"/> 
+			<element ref="w:itemID"/> 
+			<element ref="w:customerID"/> 
+			<element ref="w:saleItemPrice"/> 
+		</all> 
+	</complexType> 
+	
+	<element name="customer" type="w:customer"/> 
+	<complexType name="customer"> 
+		<all> 
+			<element ref="w:customerID" /> 
+			<element ref="w:customerName" /> 
+		</all> 
+	</complexType> 
+	
+	<simpleType name="simpleText"> 
+		<restriction base="string"> 
+			<pattern value="(\p{L}|\p{N}|_|-|\.)*"></pattern> 
+		</restriction> 
+	</simpleType> 
+	<element name="customerName" type="w:customerName"/> 
+	<simpleType name="customerName"> 
+		<restriction base="w:simpleText"> 
+			<minLength value="2"/> 
+			<maxLength value="20"/> 
+		</restriction> 
+	</simpleType> 
+	
+	<element name="customerPass" type="w:customerPass"/> 
+	<simpleType name="customerPass"> 
+		<restriction base="w:simpleText"> 
+			<minLength value="3"/> 
+			<maxLength value="20"/> 
+		</restriction> 
+	</simpleType> 
+	
+	<element name="itemID" type="nonNegativeInteger"/> 
+	<element name="itemName" type="string"/> 
+	<element name="itemURL" type="anyURI"/> 
+	<element name="itemPrice" type="nonNegativeInteger"/> 
+	<element name="itemStock" type="nonNegativeInteger"/> 
+	<element name="itemDescription"> 
+          <any minOccurs="0"/> <!-- fixme: imprecise --> 
+        </element> 
+	
+	<element name="shopKey" type="string"/> 
+	<element name="shopID" type="nonNegativeInteger"/> 
+	<element name="shopName" type="string"/> 
+	<element name="shopURL" type="anyURI"/> 
+	
+	<!-- Time is in miliseconds since Jan 1 1970 (same as java.lang.Date expects) --> 
+	<element name="saleTime" type="nonNegativeInteger"/> 
+	<element name="saleAmount" type="nonNegativeInteger"/> 
+	 
+	<element name="customerID" type="nonNegativeInteger"/> 
+	<element name="saleItemPrice" type="nonNegativeInteger"/> 
+	
+</schema> 
