@@ -1,23 +1,38 @@
 package au.webtech;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream.GetField;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-import javax.swing.text.Document;
+import org.jdom2.Document;
 
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
 
 public class App {
+	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
+	private final static String modifyUrl = "/modifyItem";
+	private final static String createUrl = "/createItem";
+	private final static String listUrl = "/listItems?shopID=194";
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Document d = ValidateDocument(args);
+		Document d = null;//ValidateDocument(args);
+		
+		try {
+			SendDocumentToShop(d);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	 }
 	
 	
@@ -43,7 +58,31 @@ public class App {
 		 return null;
 	}
 	
-	private static void SendDocumentToShop(Document d) {
+	private static void SendDocumentToShop(Document d) throws Exception {
 		
+		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl).openConnection();
+		connection.setRequestMethod("POST");
+		connection.setDoOutput(true);
+		
+		DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
+		
+		XMLOutputter out = new XMLOutputter();
+		stream.writeChars(out.outputString(d));
+		stream.flush();
+		stream.close();
+		
+		int responseCode = connection.getResponseCode();
+		
+		BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		String inputLine = "";
+		StringBuffer response = new StringBuffer();
+		
+		while((inputLine = input.readLine()) != null)
+		{
+			response.append(inputLine);
+		}
+		
+		input.close();
+		System.out.println(inputLine);
 	}
 }
