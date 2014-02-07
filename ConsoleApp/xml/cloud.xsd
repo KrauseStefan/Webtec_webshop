@@ -26,7 +26,14 @@
 	
 	<element name="modifyItem" type="w:modifyItem"/> 
 	<complexType name="modifyItem"> 
-           <!-- fixme: missing --> 
+		<all>
+    		<element ref="w:shopKey"/>
+    		<element ref="w:itemID"/>
+    		<element ref="w:itemName"/>
+    		<element ref="w:itemPrice"/>
+    		<element ref="w:itemURL"/>
+    		<element ref="w:itemDescription"/>
+    	</all>
 	</complexType> 
 	
 	<element name="login" type="w:login"/> 
@@ -174,9 +181,28 @@
 	<element name="itemURL" type="anyURI"/> 
 	<element name="itemPrice" type="nonNegativeInteger"/> 
 	<element name="itemStock" type="nonNegativeInteger"/> 
-	<element name="itemDescription"> 
-          <any minOccurs="0"/> <!-- fixme: imprecise --> 
-        </element> 
+    
+    <element name="itemDescription" type="w:itemDescription"/> 
+	<complexType name="itemDescription"> 
+		<all> 
+			<element ref="w:document"/> 
+		</all> 
+	</complexType>
+	
+	<element name="document" type="w:document"/> 
+	<complexType name="document" mixed="true"> 
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="bold" type="string"/>
+			<element name="italics" type="string"/>
+			<element name="list" type="w:list"/>
+		</choice> 
+	</complexType> 
+	
+	<complexType name="list">
+		<sequence maxOccurs="unbounded">
+			<element name="item" type="w:document"/>
+		</sequence>
+	</complexType>
 	
 	<element name="shopKey" type="string"/> 
 	<element name="shopID" type="nonNegativeInteger"/> 
