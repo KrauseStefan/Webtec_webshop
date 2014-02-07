@@ -3,18 +3,14 @@ package au.webtech;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream.GetField;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-
-import org.jdom2.Document;
 
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
+import org.jdom2.Document;
 
 public class App {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
@@ -48,13 +44,16 @@ public class App {
 					 new File(args[1])); 
 			 String msg = "No errors!"; 
 			 try { 
-				 Document d = (Document) b.build(new File(args[0])); 
+				 Document d = b.build(new File(args[0])); 
+				 System.out.println(msg);
 				 return d;
 			 } catch (JDOMParseException e ) { 
 				 msg = e.getMessage(); 
 			 } 
 			 System.out.println(msg); 
-		 } catch (Exception e) { e.printStackTrace(); } 
+		 } catch (Exception e) { 
+			 e.printStackTrace(); 
+		 } 
 		 return null;
 	}
 	
