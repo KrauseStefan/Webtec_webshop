@@ -34,6 +34,13 @@ public class App {
 	public static void main(String[] args) {
 		Document d = ValidateDocument(args);
 		
+		String rootName = d.getRootElement().getName();
+		
+		if(rootName != "item") {
+			System.out.println("Root element is not 'item'!");
+			return;
+		}
+		
 		try {
 			createItem(d);
 		} catch (Exception e) {
