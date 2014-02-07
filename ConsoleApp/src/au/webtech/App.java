@@ -15,6 +15,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
+import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -73,9 +74,17 @@ public class App {
 		
 		XPathFactory factory = XPathFactory.instance();
 		
-		Namespace ns = Namespace.getNamespace(namespaceUrl);
-		XPathExpression<Element> element = factory.compile("//itemName", Filters.element(), null, ns);
-		Object object = element.evaluateFirst(d);
+		Namespace ns = Namespace.getNamespace("w", namespaceUrl);
+		XPathExpression<Element> expression = factory.compile("//w:itemName", Filters.element(), null, ns);
+		Element element = expression.evaluateFirst(d);
+		String itemName = element.getText();
+		
+		Element createItem = new Element("createItem", ns);
+		Document doc = new Document(createItem);
+		//doc.setDocType(new DocType());
+
+		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
+		createItem.addContent((new Element("itemName", ns)).setText(itemName));
 		
 		XMLOutputter out = new XMLOutputter();
 		stream.writeChars(out.outputString(d));
