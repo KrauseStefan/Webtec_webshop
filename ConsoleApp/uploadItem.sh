@@ -1,0 +1,1 @@
+java -cp "libs/jaxen-1.1.6.jar:libs/jdom-2.0.5.jar:bin" App $1 xml/cloud.xsd
