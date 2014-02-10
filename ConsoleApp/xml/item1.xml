@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
-	<itemID>1134</itemID>
-	<itemName>John Johnson</itemName>
+	<itemID>1</itemID>
+	<itemName>Triumf buen</itemName>
 	<itemURL>./direct/url</itemURL>
-	<itemPrice>1000000</itemPrice>
+	<itemPrice>10100</itemPrice>
 	<itemStock>1</itemStock>
 	<itemDescription>
 		<document>
-			This is a <italics>JOHN2</italics> opportunity to buy something that is one of a kind:
+			This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
 			<list>
 				<item>it is cool looking</item>
 				<item>it is truly <bold>unique</bold></item>
-				<item>it is in space</item>
-				<item>it is astronomically large</item>
+				<item>it is large</item>
 			</list>
 		</document>
 	</itemDescription>
