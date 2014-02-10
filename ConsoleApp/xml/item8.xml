@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
-	<itemID>1</itemID>
-	<itemName>Triumf buen</itemName>
+	<itemID>8</itemID>
+	<itemName>Egyptisk pyramide</itemName>
 	<itemURL>./direct/url</itemURL>
-	<itemPrice>10100</itemPrice>
+	<itemPrice>3000</itemPrice>
 	<itemStock>1</itemStock>
 	<itemDescription>
 		<document>
