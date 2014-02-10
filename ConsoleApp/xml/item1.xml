@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
-	<itemID>1</itemID>
+	<itemID>199</itemID>
 	<itemName>Stone Henge</itemName>
 	<itemURL>./direct/url</itemURL>
 	<itemPrice>1000000</itemPrice>
 	<itemStock>1</itemStock>
 	<itemDescription>
 		<document>
-			This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+			This is a <italics>JOHN2</italics> opportunity to buy something that is one of a kind:
 			<list>
 				<item>it is cool looking</item>
 				<item>it is truly <bold>unique</bold></item>

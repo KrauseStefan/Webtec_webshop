@@ -45,7 +45,7 @@ public class App {
 		}
 		
 		try {
-			modifyItem(d);
+			createItem(d);
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
