@@ -1,4 +1,5 @@
-package au.webtech;
+
+//package au.webtech;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -145,10 +146,10 @@ public class App {
 	
 	private static String createItem(Document itemDocument) throws Exception {
 
-		Namespace nsW = Namespace.getNamespace("w", namespaceUrl);		
+		Namespace nsW = Namespace.getNamespace("w", namespaceUrl);
 		Namespace ns = Namespace.getNamespace("", namespaceUrl);
 		String itemName = getItemValueUsingXpath(itemDocument, "//w:itemName", nsW);
-		Document createDoc = createItemDocuemnt(itemName, ns);
+		Document createDoc = createItemDocuemnt(itemName, nsW);
 
 		HttpURLConnection connection = createConnection(baseUrl+createUrl);
 		int responseCode = sendDocument(connection, createDoc);
@@ -168,18 +169,23 @@ public class App {
 		
 	}
 	
-	private static void modifyItem(Document d, String itemID) throws Exception {
+	private static void modifyItem(Document itemDocument, String itemID) throws Exception {
 		HttpURLConnection connection = createConnection(baseUrl+modifyUrl);
 		
 		Namespace ns = Namespace.getNamespace("", namespaceUrl);
 
-		Document modifyDoc = modifyItemDocuemnt(d, itemID, ns);
+		Document modifyDoc = modifyItemDocuemnt(itemDocument, itemID, ns);
 		
 		int responseCode = sendDocument(connection, modifyDoc);
 		System.out.println("ResponseCode: " + responseCode);
 
+		connection.disconnect();
+
 		if(responseCode >= 200 && responseCode < 300)
 			System.out.println("Successfully Modified Item");
+		else{
+			throw new Exception("Error creating item.");	
+		}
 		
 	}
 }

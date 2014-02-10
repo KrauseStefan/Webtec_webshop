@@ -216,4 +216,21 @@
 	<element name="customerID" type="nonNegativeInteger"/> 
 	<element name="saleItemPrice" type="nonNegativeInteger"/> 
 	
+
+	<!-- Extra schema code from https://services.brics.dk/java/courseadmin/dWebTek/webboard/read?posting=242950 --> 
+	<element name="deleteItem" type="w:deleteItem"/>
+    <complexType name="deleteItem">
+        <all>
+            <element ref="w:shopKey"/>
+            <element ref="w:itemID"/>
+        </all>
+    </complexType>
+
+    <element name="itemIDs" type="w:itemIDs"/>
+    <complexType name="itemIDs">
+        <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="w:itemID"/>
+        </sequence>
+    </complexType>
+
 </schema> 
