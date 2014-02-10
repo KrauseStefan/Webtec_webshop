@@ -1,18 +1,15 @@
 package au.webtech;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.jdom2.filter.Filters;
 import org.jdom2.input.JDOMParseException;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.input.sax.XMLReaders;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
@@ -35,8 +32,8 @@ public class App {
 	public static void main(String[] args) {
 		fileXSD = new File(args[1]);
 
-		Document d = ValidateDocument(args);		
-		String rootName = d.getRootElement().getName();
+		Document itemDocument = ValidateDocument(args[0]);		
+		String rootName = itemDocument.getRootElement().getName();
 		
 		
 		if(rootName != "item") {
@@ -45,14 +42,15 @@ public class App {
 		}
 		
 		try {
-			modifyItem(d);
+			String itemID = createItem(itemDocument);
+			modifyItem(itemDocument, itemID);
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
 	 }
 	
 	
-	private static Document ValidateDocument(String[] args) {
+	private static Document ValidateDocument(String xmlDocUrl) {
 		try { 
 			 SAXBuilder b = new SAXBuilder(); 
 			 b.setValidation(true); 
@@ -64,7 +62,7 @@ public class App {
 					 fileXSD); 
 			 String msg = "No errors!"; 
 			 try { 
-				 Document d = b.build(new File(args[0])); 
+				 Document d = b.build(new File(xmlDocUrl)); 
 				 System.out.println(msg);
 				 return d;
 			 } catch (JDOMParseException e ) { 
@@ -105,17 +103,7 @@ public class App {
 		root.addContent(1, (new Element("shopKey", ns)).setText(shopKey));
 		root.getChild("itemID", ns).setText(itemID);
 		root.removeChild("itemStock", ns);
-		
-//		Element createItem = new Element("modifyItem", ns);
-//		Document doc = new Document(createItem);
-
-//		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
-//		createItem.addContent((new Element("itemID", ns)).setText(itemName));
-//		createItem.addContent((new Element("itemName", ns)).setText(itemName));
-//		createItem.addContent((new Element("itemPrice", ns)).setText(itemName));
-//		createItem.addContent((new Element("itemURL", ns)).setText(itemName));
-//		createItem.addContent((new Element("itemDescription", ns)).setText(itemName));
-		
+				
 		return item;	
 	}
 	
@@ -129,7 +117,7 @@ public class App {
 		return con.getResponseCode();		
 	}
 	
-	private static Document resiveDocument(HttpURLConnection con) throws Exception{
+	private static Document receiveDocument(HttpURLConnection con) throws Exception{
 		InputStream input = con.getInputStream();
 				
 		SAXBuilder b = new SAXBuilder();
@@ -145,47 +133,6 @@ public class App {
 		return respDoc;
 	}
 	
-	private static void SendDocumentToShop(HttpURLConnection connection, Document d) throws Exception {		
-		
-		System.out.println("Writing to host");
-		
-		Namespace ns = Namespace.getNamespace("", namespaceUrl);
-		Namespace nsW = Namespace.getNamespace("w", namespaceUrl);
-		
-		String itemName = getItemValueUsingXpath(d, "//w:itemName", nsW);
-		
-		Document createDoc = createItemDocuemnt(itemName, ns);
-						
-		int responseCode = sendDocument(connection, createDoc);
-		
-		System.out.println("ResponseCode: " + responseCode);
-		
-		Document respDoc = resiveDocument(connection);
-		 
-		String itemID = getItemValueUsingXpath(respDoc, "//w:itemID", nsW);	
-		System.out.println("Recived ID: " + itemID);
-		
-		Document modifyDoc = modifyItemDocuemnt(d, itemID, ns);
-
-		
-		connection.disconnect();
-		connection = createConnection(baseUrl+modifyUrl);
-		responseCode = sendDocument(connection, modifyDoc);
-		
-		if (!(responseCode >= 200 && responseCode < 300))
-			throw new Exception("Faild to update item");
-			
-	}
-	
-	private static void createItem(Document d) throws Exception {
-		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl+createUrl).openConnection();
-		connection.setRequestMethod("POST");
-		connection.setDoOutput(true);
-		connection.setRequestProperty("Content-type", "text/xml");
-		
-		SendDocumentToShop(connection, d);
-	}
-
 	private static HttpURLConnection createConnection(String url) throws Exception {
 		HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
 		connection.setRequestMethod("POST");
@@ -196,11 +143,43 @@ public class App {
 	}
 
 	
-	private static void modifyItem(Document d) throws Exception {
-		HttpURLConnection connection = (HttpURLConnection) new URL(baseUrl+modifyUrl).openConnection();
-		connection.setRequestMethod("POST");
-		connection.setDoOutput(true);
+	private static String createItem(Document itemDocument) throws Exception {
+
+		Namespace nsW = Namespace.getNamespace("w", namespaceUrl);		
+		Namespace ns = Namespace.getNamespace("", namespaceUrl);
+		String itemName = getItemValueUsingXpath(itemDocument, "//w:itemName", nsW);
+		Document createDoc = createItemDocuemnt(itemName, ns);
+
+		HttpURLConnection connection = createConnection(baseUrl+createUrl);
+		int responseCode = sendDocument(connection, createDoc);
+		System.out.println("ResponseCode: " + responseCode);
+
+		if(responseCode >= 200 && responseCode < 300){
+			Document respDoc = receiveDocument(connection);
+			String itemID = getItemValueUsingXpath(respDoc, "//w:itemID", nsW);	
+			System.out.println("Successfully Created Item");
+			System.out.println("Recived ID: " + itemID);
+			connection.disconnect();
+			return itemID;
+		}else{
+			connection.disconnect();
+			throw new Exception("Error creating item.");
+		}
 		
-		SendDocumentToShop(connection, d);
+	}
+	
+	private static void modifyItem(Document d, String itemID) throws Exception {
+		HttpURLConnection connection = createConnection(baseUrl+modifyUrl);
+		
+		Namespace ns = Namespace.getNamespace("", namespaceUrl);
+
+		Document modifyDoc = modifyItemDocuemnt(d, itemID, ns);
+		
+		int responseCode = sendDocument(connection, modifyDoc);
+		System.out.println("ResponseCode: " + responseCode);
+
+		if(responseCode >= 200 && responseCode < 300)
+			System.out.println("Successfully Modified Item");
+		
 	}
 }
