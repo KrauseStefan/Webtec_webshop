@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
-	<itemID>199</itemID>
-	<itemName>Stone Henge</itemName>
+	<itemID>1134</itemID>
+	<itemName>John Johnson</itemName>
 	<itemURL>./direct/url</itemURL>
 	<itemPrice>1000000</itemPrice>
 	<itemStock>1</itemStock>
