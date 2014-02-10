@@ -32,8 +32,8 @@ public class App {
 	public static void main(String[] args) {
 		fileXSD = new File(args[1]);
 
-		Document d = ValidateDocument(args);		
-		String rootName = d.getRootElement().getName();
+		Document itemDocument = ValidateDocument(args[0]);		
+		String rootName = itemDocument.getRootElement().getName();
 		
 		
 		if(rootName != "item") {
@@ -42,15 +42,15 @@ public class App {
 		}
 		
 		try {
-			String itemID = createItem(d);
-			modifyItem(d, itemID);
+			String itemID = createItem(itemDocument);
+			modifyItem(itemDocument, itemID);
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
 	 }
 	
 	
-	private static Document ValidateDocument(String[] args) {
+	private static Document ValidateDocument(String xmlDocUrl) {
 		try { 
 			 SAXBuilder b = new SAXBuilder(); 
 			 b.setValidation(true); 
@@ -62,7 +62,7 @@ public class App {
 					 fileXSD); 
 			 String msg = "No errors!"; 
 			 try { 
-				 Document d = b.build(new File(args[0])); 
+				 Document d = b.build(new File(xmlDocUrl)); 
 				 System.out.println(msg);
 				 return d;
 			 } catch (JDOMParseException e ) { 
@@ -157,6 +157,7 @@ public class App {
 		if(responseCode >= 200 && responseCode < 300){
 			Document respDoc = receiveDocument(connection);
 			String itemID = getItemValueUsingXpath(respDoc, "//w:itemID", nsW);	
+			System.out.println("Successfully Created Item");
 			System.out.println("Recived ID: " + itemID);
 			connection.disconnect();
 			return itemID;
@@ -176,6 +177,9 @@ public class App {
 		
 		int responseCode = sendDocument(connection, modifyDoc);
 		System.out.println("ResponseCode: " + responseCode);
+
+		if(responseCode >= 200 && responseCode < 300)
+			System.out.println("Successfully Modified Item");
 		
 	}
 }
