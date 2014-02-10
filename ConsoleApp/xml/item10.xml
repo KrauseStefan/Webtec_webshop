@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
+	<itemID>10</itemID>
+	<itemName>Månen</itemName>
+	<itemURL>./direct/url</itemURL>
+	<itemPrice>1000000</itemPrice>
+	<itemStock>1</itemStock>
+	<itemDescription>
+		<document>
+			This is a <italics>unique</italics> opportunity to buy something that is one of a kind:
+			<list>
+				<item>it is cool looking</item>
+				<item>it is truly <bold>unique</bold></item>
+				<item>it is in space</item>
+				<item>it is astronomically large</item>
+			</list>
+		</document>
+	</itemDescription>
+</item>
