@@ -63,9 +63,15 @@ public class DocumentGenerator {
 	}
 
 	
-	public static Document createCostumerDocument(){
+	public static Document createCustomerDocument(String customerName, String customerPass){
+		Element createItem = new Element("createCustomer", nsX);
+		Document doc = new Document(createItem);
+
+		createItem.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		createItem.addContent((new Element("customerName", nsX)).setText(customerName));
+		createItem.addContent((new Element("customerPass", nsX)).setText(customerPass));
 		
-		return null;
+		return doc;
 	}
 	
 	
