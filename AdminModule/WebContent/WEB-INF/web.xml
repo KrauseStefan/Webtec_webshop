@@ -31,24 +31,24 @@
 		<welcome-file>login.jsf</welcome-file>
 	</welcome-file-list>
 
-	<context-param>
-		<param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>org.apache.myfaces.PRETTY_HTML</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<context-param>
-		<param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
-		<param-value>true</param-value>
-	</context-param>
+<!-- 	<context-param> -->
+<!-- 		<param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name> -->
+<!-- 		<param-value>true</param-value> -->
+<!-- 	</context-param> -->
+<!-- 	<context-param> -->
+<!-- 		<param-name>org.apache.myfaces.PRETTY_HTML</param-name> -->
+<!-- 		<param-value>true</param-value> -->
+<!-- 	</context-param> -->
+<!-- 	<context-param> -->
+<!-- 		<param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name> -->
+<!-- 		<param-value>false</param-value> -->
+<!-- 	</context-param> -->
+<!-- 	<context-param> -->
+<!-- 		<param-name>org.apache.myfaces.AUTO_SCROLL</param-name> -->
+<!-- 		<param-value>true</param-value> -->
+<!-- 	</context-param> -->
 	
 	<listener>
-		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
 </web-app>
