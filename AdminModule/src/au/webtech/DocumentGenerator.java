@@ -36,6 +36,41 @@ public class DocumentGenerator {
 		return _itemDoc;	
 	}	
 	
+	
+	public static Document loginDocument(){
+		
+		return null;
+	}
+	
+	
+	public static Document sellItemsDocument(){
+		
+		return null;
+	}
+
+	
+	public static Document createCostumerDocument(){
+		
+		return null;
+	}
+	
+	
+	public static Document adjustItemStockDocument(){
+		
+		return null;
+	}
+	
+	
+	public static Document deteItemDocument(){
+		
+		return null;
+	}
+	
+	public static Document itemDocument(){
+		
+		return null;
+	}
+	
 	public  static Element getItemUsingXpath(Document d, String exp, Namespace ns){
 		XPathFactory factory = XPathFactory.instance();
 		XPathExpression<Element> expression = factory.compile(exp, Filters.element(), null, ns);
