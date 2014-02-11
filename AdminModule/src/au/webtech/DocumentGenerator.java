@@ -12,15 +12,16 @@ import org.jdom2.xpath.XPathFactory;
 public class DocumentGenerator {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
+	private final static String shopId = "194";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 //	private final static Namespace ns = Namespace.getNamespace("", namespaceUrl);
 	
-	public static Document createItemDocuemnt(String itemName, Namespace ns){
-		Element createItem = new Element("createItem", ns);
+	public static Document createItemDocuemnt(String itemName){
+		Element createItem = new Element("createItem", nsX);
 		Document doc = new Document(createItem);
 
-		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
-		createItem.addContent((new Element("itemName", ns)).setText(itemName));
+		createItem.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		createItem.addContent((new Element("itemName", nsX)).setText(itemName));
 		
 		return doc;
 	}
@@ -37,9 +38,14 @@ public class DocumentGenerator {
 	}	
 	
 	
-	public static Document loginDocument(){
+	public static Document loginDocument(String customerName, String customerPass){
+		Element createItem = new Element("login", nsX);
+		Document doc = new Document(createItem);
+
+		createItem.addContent((new Element("customerName", nsX)).setText(customerName));
+		createItem.addContent((new Element("customerPass", nsX)).setText(customerPass));
 		
-		return null;
+		return doc;
 	}
 	
 	
@@ -66,10 +72,19 @@ public class DocumentGenerator {
 		return null;
 	}
 	
-	public static Document itemDocument(){
+	public static Document itemDocument(String id, String name, String url, String price, String stock, String description){
+		Element item = new Element("item", nsX);
+
+		item.addContent((new Element("itemID", nsX)).setText(id));
+		item.addContent((new Element("itemName", nsX)).setText(name));
+		item.addContent((new Element("itemURL", nsX)).setText(url));
+		item.addContent((new Element("itemPrice", nsX)).setText(price));
+		item.addContent((new Element("itemStock", nsX)).setText(stock));
+		item.addContent((new Element("itemDescription", nsX)).setText(description));
 		
-		return null;
+		return new Document(item);
 	}
+
 	
 	public  static Element getItemUsingXpath(Document d, String exp, Namespace ns){
 		XPathFactory factory = XPathFactory.instance();
