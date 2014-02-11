@@ -75,9 +75,15 @@ public class DocumentGenerator {
 	}
 	
 	
-	public static Document adjustItemStockDocument(){
+	public static Document adjustItemStockDocument(String ItemID, String adjustment){
+		Element createItem = new Element("adjustItemStock", nsX);
+		Document doc = new Document(createItem);
+
+		createItem.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		createItem.addContent((new Element("itemID", nsX)).setText(ItemID));
+		createItem.addContent((new Element("adjustment", nsX)).setText(adjustment));
 		
-		return null;
+		return doc;	
 	}
 	
 	
