@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Create</title>
+</head>
+<body>
+<div style="background-color:navy;width:100%;color:white"></div>
+<H1>Create</H1>
+<h:form>
+	<p>Name:</p><h:inputText value="#{shopItem.itemName}"/>
+	<h:commandButton action="overview?faces-redirect=true" value="Create"/>
+</h:form>
+</body>
+</html>

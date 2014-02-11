@@ -49,9 +49,17 @@ public class DocumentGenerator {
 	}
 	
 	
-	public static Document sellItemsDocument(){
+	public static Document sellItemsDocument(String itemID, String customerID){
+		Element createItem = new Element("sellItems", nsX);
+		Document doc = new Document(createItem);
+
+		createItem.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		createItem.addContent((new Element("itemID", nsX)).setText(itemID));
+		createItem.addContent((new Element("customerID", nsX)).setText(customerID));
+		createItem.addContent((new Element("itemID", nsX)).setText(itemID));
+		createItem.addContent((new Element("saleAmount", nsX)).setText(itemID));
 		
-		return null;
+		return doc;
 	}
 
 	

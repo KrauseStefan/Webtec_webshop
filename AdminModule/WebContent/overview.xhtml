@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Overview</title>
+</head>
+<body>
+	<H1>Overview for Wundershop</H1>
+	<div style="background-color:navy;width:100%;color:white"></div>
+	<h:form>
+		<h:commandButton action="create?faces-redirect=true" value="Create"/>
+	</h:form>
+	<h:dataTable border="1">
+		<h:column>
+        <f:facet name="header">
+            <h:outputText value="ID" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemID}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Name" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemName}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Description" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemDescription}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Url" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemUrl}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Price" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemPrice}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Stock" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemStock}" />
+    </h:column>
+        <h:column>
+        <f:facet name="header">
+            <h:outputText value="Modify" />
+        </f:facet>
+        <h:commandLink value="Modify" />
+    </h:column>
+        <h:column>
+        <f:facet name="header">
+            <h:outputText value="Adjust" />
+        </f:facet>
+        <h:outputText value="Adjust" />
+    </h:column>
+	</h:dataTable>
+</body>
+</html>
