@@ -1,7 +1,5 @@
 package au.webtech;
 
-import java.net.HttpURLConnection;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -12,9 +10,7 @@ import org.jdom2.xpath.XPathFactory;
 public class DocumentGenerator {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
-	private final static String shopId = "194";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
-//	private final static Namespace ns = Namespace.getNamespace("", namespaceUrl);
 	
 	public static Document createItemDocuemnt(String itemName){
 		Element createItem = new Element("createItem", nsX);
