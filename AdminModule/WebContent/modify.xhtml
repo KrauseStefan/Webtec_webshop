@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Modify</title>
+</head>
+<body>
+	<div style="background-color:navy;width:100%;color:white"></div>
+	<H1>Modify</H1>
+
+	<p>
+		<h:outputLabel value="#{shopItem.itemID}"/>
+		<h:inputText value="#{shopItem.itemName}"/>
+		<h:inputText value="#{shopItem.itemPrice}"/>
+		<h:inputText value="#{shopItem.itemUrl}"/>
+	</p>
+	<p>
+		<h:inputTextarea value="#{shopItem.itemDescription}"/>
+	</p>
+	<p>
+		<h:commandButton value="Save"/>
+	</p>
+</body>
+</html>

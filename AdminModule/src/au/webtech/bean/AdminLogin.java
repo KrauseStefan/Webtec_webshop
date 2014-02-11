@@ -33,9 +33,9 @@ public class AdminLogin implements Serializable {
 	
 	public String getSuccess(){
 		if(nameSecret.equals(name) && password.equals(passwordSecret))
-			return "sucess";
+			return "overview";
 		
-		return "failure";
+		return "Admin";
 	}
 	
 }
