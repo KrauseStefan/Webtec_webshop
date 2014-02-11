@@ -67,7 +67,7 @@ public class DocumentGenerator {
 	}
 	
 	
-	public static Document deteItemDocument(){
+	public static Document deleteItemDocument(){
 		
 		return null;
 	}
