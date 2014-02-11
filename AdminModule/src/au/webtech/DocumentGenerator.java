@@ -12,6 +12,7 @@ import org.jdom2.xpath.XPathFactory;
 public class DocumentGenerator {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
+	private final static String shopId = "194";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 //	private final static Namespace ns = Namespace.getNamespace("", namespaceUrl);
 	
@@ -67,11 +68,6 @@ public class DocumentGenerator {
 	}
 	
 	public static Document itemDocument(){
-		
-		return null;
-	}
-
-	public static Document listItemsDocument(){
 		
 		return null;
 	}
