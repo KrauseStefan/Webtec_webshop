@@ -10,3 +10,5 @@ Handin*.zip
 node_modules
 
 .settings
+
+*.~vsdx
