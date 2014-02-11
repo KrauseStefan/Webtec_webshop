@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>Admin Login</title>
+</head>
+<body>
+	<h2>Please login</h2>
+	<h:form>
+		<p>Username:</p><h:inputText value="#{adminLogin.name}" />
+		<p>Password:</p><h:inputSecret value="#{adminLogin.password}" />
+		<br/>
+		<h:commandButton value="Submit"/>
+	</h:form>
+	#{adminLogin.success}	
+</body>
+</html>

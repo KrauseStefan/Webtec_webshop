@@ -9,6 +9,6 @@ Handin*.zip
 
 node_modules
 
-.settings
+.metadata
 
 *.~vsdx
