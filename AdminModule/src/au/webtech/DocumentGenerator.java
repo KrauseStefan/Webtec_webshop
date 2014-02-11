@@ -70,6 +70,12 @@ public class DocumentGenerator {
 		
 		return null;
 	}
+
+	public static Document listItemsDocument(){
+		
+		return null;
+	}
+
 	
 	public  static Element getItemUsingXpath(Document d, String exp, Namespace ns){
 		XPathFactory factory = XPathFactory.instance();
