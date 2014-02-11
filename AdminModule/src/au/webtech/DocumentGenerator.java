@@ -72,9 +72,17 @@ public class DocumentGenerator {
 		return null;
 	}
 	
-	public static Document itemDocument(){
+	public static Document itemDocument(String id, String name, String url, String price, String stock, String description){
+		Element item = new Element("item", nsX);
+
+		item.addContent((new Element("itemID", nsX)).setText(id));
+		item.addContent((new Element("itemName", nsX)).setText(name));
+		item.addContent((new Element("itemURL", nsX)).setText(url));
+		item.addContent((new Element("itemPrice", nsX)).setText(price));
+		item.addContent((new Element("itemStock", nsX)).setText(stock));
+		item.addContent((new Element("itemDescription", nsX)).setText(description));
 		
-		return null;
+		return new Document(item);
 	}
 
 	
