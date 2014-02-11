@@ -12,8 +12,7 @@
 		<p>Username:</p><h:inputText value="#{adminLogin.name}" />
 		<p>Password:</p><h:inputSecret value="#{adminLogin.password}" />
 		<br/>
-		<h:commandButton value="Login"/>
+		<h:commandButton action="#{adminLogin.getSuccess()}" value="Login"/>
 	</h:form>
-	#{adminLogin.success}	
 </body>
 </html>
