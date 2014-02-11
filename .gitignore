@@ -5,6 +5,7 @@
 *.war
 *.ear
 *.json
+*.DS_STORE
 Handin*.zip
 build
 node_modules

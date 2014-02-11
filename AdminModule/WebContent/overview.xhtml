@@ -11,8 +11,9 @@
 <body>
 	<H1>Overview for Wundershop</H1>
 	<div style="background-color:navy;width:100%;color:white"></div>
-	<h:commandButton action="create" value="Create"/>
-	
+	<h:form>
+		<h:commandButton action="create?faces-redirect=true" value="Create"/>
+	</h:form>
 	<h:dataTable border="1">
 		<h:column>
         <f:facet name="header">
@@ -34,6 +35,12 @@
     </h:column>
     <h:column>
         <f:facet name="header">
+            <h:outputText value="Url" />
+        </f:facet>
+        <h:outputText value="#{shopItem.itemUrl}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
             <h:outputText value="Price" />
         </f:facet>
         <h:outputText value="#{shopItem.itemPrice}" />
@@ -43,6 +50,18 @@
             <h:outputText value="Stock" />
         </f:facet>
         <h:outputText value="#{shopItem.itemStock}" />
+    </h:column>
+        <h:column>
+        <f:facet name="header">
+            <h:outputText value="Modify" />
+        </f:facet>
+        <h:commandLink value="Modify" />
+    </h:column>
+        <h:column>
+        <f:facet name="header">
+            <h:outputText value="Adjust" />
+        </f:facet>
+        <h:outputText value="Adjust" />
     </h:column>
 	</h:dataTable>
 </body>
