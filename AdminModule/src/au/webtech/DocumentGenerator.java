@@ -16,12 +16,12 @@ public class DocumentGenerator {
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 //	private final static Namespace ns = Namespace.getNamespace("", namespaceUrl);
 	
-	public static Document createItemDocuemnt(String itemName, Namespace ns){
-		Element createItem = new Element("createItem", ns);
+	public static Document createItemDocuemnt(String itemName){
+		Element createItem = new Element("createItem", nsX);
 		Document doc = new Document(createItem);
 
-		createItem.addContent((new Element("shopKey", ns)).setText(shopKey));
-		createItem.addContent((new Element("itemName", ns)).setText(itemName));
+		createItem.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		createItem.addContent((new Element("itemName", nsX)).setText(itemName));
 		
 		return doc;
 	}
@@ -38,9 +38,14 @@ public class DocumentGenerator {
 	}	
 	
 	
-	public static Document loginDocument(){
+	public static Document loginDocument(String customerName, String customerPass){
+		Element createItem = new Element("login", nsX);
+		Document doc = new Document(createItem);
+
+		createItem.addContent((new Element("customerName", nsX)).setText(customerName));
+		createItem.addContent((new Element("customerPass", nsX)).setText(customerPass));
 		
-		return null;
+		return doc;
 	}
 	
 	
