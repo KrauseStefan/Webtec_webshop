@@ -75,9 +75,13 @@ public class DocumentGenerator {
 	}
 	
 	
-	public static Document deleteItemDocument(){
+	public static Document deleteItemDocument(String id){
+		Element item = new Element("deleteItem", nsX);
+
+		item.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		item.addContent((new Element("itemID", nsX)).setText(id));
 		
-		return null;
+		return new Document(item);
 	}
 	
 	public static Document itemDocument(String id, String name, String url, String price, String stock, String description){
