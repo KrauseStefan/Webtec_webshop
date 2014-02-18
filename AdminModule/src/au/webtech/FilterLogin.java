@@ -2,14 +2,6 @@ package au.webtech;
 
 import java.io.IOException;
 import java.util.Enumeration;
-
-import javax.faces.FactoryFinder;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.context.FacesContextWrapper;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -65,17 +57,10 @@ public class FilterLogin implements Filter {
 		String url = req.getServletPath();
 		boolean doRedirect = false;
 		
-//		FacesContext facesContext = FacesContext.getCurrentInstance();
+		
 		AdminLogin adminLogin = getAdminLoginBean(request);
 		
-		if(url.equals("/login.jsf")){			
-			HttpServletResponse resp = (HttpServletResponse) response;
-			if(adminLogin == null){
-			
-			}else if(adminLogin != null && adminLogin.isLooggedin()){
-				resp.sendRedirect("overview.jsf");				
-			}
-		}else{
+		if(!url.equals("/login.jsf")){			
 			if(adminLogin == null || !adminLogin.isLooggedin()){
 				doRedirect = true;
 			}else{
