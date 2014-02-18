@@ -5,64 +5,68 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 	
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Overview</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
+    <link href="./css/mainStyle.css" rel="stylesheet" />
+	<title>Overview</title>
 </head>
 <body>
-	<H1>Overview for Wundershop</H1>
-	<div style="background-color:navy;width:100%;color:white"></div>
-	<h:form>
-		<h:commandButton action="create?faces-redirect=true" value="Create"/>
-	</h:form>
-	<h:dataTable border="1" value="#{itemMannager.items}" var="item">
-		<h:column>
-        <f:facet name="header">
-            <h:outputText value="ID" />
-        </f:facet>
-        <h:outputText value="#{item.itemID}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Name" />
-        </f:facet>
-        <h:outputText value="#{item.itemName}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Description" />
-        </f:facet>
-        <h:outputText value="#{item.itemDescription}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Url" />
-        </f:facet>
-        <h:outputText value="#{item.itemUrl}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Price" />
-        </f:facet>
-        <h:outputText value="#{item.itemPrice}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Stock" />
-        </f:facet>
-        <h:outputText value="#{item.itemStock}" />
-    </h:column>
-        <h:column>
-        <f:facet name="header">
-            <h:outputText value="Modify" />
-        </f:facet>
-        <h:commandLink value="Modify" />
-    </h:column>
-        <h:column>
-        <f:facet name="header">
-            <h:outputText value="Adjust" />
-        </f:facet>
-        <h:outputText value="Adjust" />
-    </h:column>
-	</h:dataTable>
+	<h1 class="title">Overview for Wundershop</h1>
+	<div class="titleUnderline"></div>
+	<div class="section">
+		<h:form>
+			<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
+		</h:form>
+		<h:dataTable border="1" value="#{itemMannager.items}" var="shopItem">
+			<h:column>
+	        <f:facet name="header">
+	            <h:outputText value="ID" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemID}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Name" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemName}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Description" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemDescription}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Url" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemUrl}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Price" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemPrice}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Stock" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemStock}" />
+	    </h:column>
+	        <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Modify" class="tableHeader" />
+	        </f:facet>
+	        <h:commandLink value="Modify" />
+	    </h:column>
+	        <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Adjust" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="Adjust" />
+	    </h:column>
+		</h:dataTable>
+	</div>
 </body>
 </html>
