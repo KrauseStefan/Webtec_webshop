@@ -13,58 +13,60 @@
 <body>
 	<h1 class="title">Overview for Wundershop</h1>
 	<div class="titleUnderline"></div>
-	<h:form>
-		<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
-	</h:form>
-	<h:dataTable border="1">
-		<h:column>
-        <f:facet name="header">
-            <h:outputText value="ID" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemID}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Name" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemName}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Description" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemDescription}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Url" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemUrl}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Price" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemPrice}" />
-    </h:column>
-    <h:column>
-        <f:facet name="header">
-            <h:outputText value="Stock" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="#{shopItem.itemStock}" />
-    </h:column>
-        <h:column>
-        <f:facet name="header">
-            <h:outputText value="Modify" class="tableHeader" />
-        </f:facet>
-        <h:commandLink value="Modify" />
-    </h:column>
-        <h:column>
-        <f:facet name="header">
-            <h:outputText value="Adjust" class="tableHeader" />
-        </f:facet>
-        <h:outputText value="Adjust" />
-    </h:column>
-	</h:dataTable>
+	<div class="section">
+		<h:form>
+			<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
+		</h:form>
+		<h:dataTable border="1">
+			<h:column>
+	        <f:facet name="header">
+	            <h:outputText value="ID" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemID}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Name" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemName}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Description" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemDescription}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Url" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemUrl}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Price" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemPrice}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Stock" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="#{shopItem.itemStock}" />
+	    </h:column>
+	        <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Modify" class="tableHeader" />
+	        </f:facet>
+	        <h:commandLink value="Modify" />
+	    </h:column>
+	        <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Adjust" class="tableHeader" />
+	        </f:facet>
+	        <h:outputText value="Adjust" />
+	    </h:column>
+		</h:dataTable>
+	</div>
 </body>
 </html>

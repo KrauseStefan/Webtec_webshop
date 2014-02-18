@@ -12,10 +12,12 @@
 	<h1 class="title">Please login</h1>
 	<div class="titleUnderline"></div>
 	<h:form>
-		<p class="infoHeader">Username:</p><h:inputText value="#{adminLogin.name}" />
-		<p class="infoHeader">Password:</p><h:inputSecret value="#{adminLogin.password}" />
+	<div class="section">
+		<p class="infoHeader">Username:</p><h:inputText class="inputField" value="#{adminLogin.name}" />
+		<p class="infoHeader">Password:</p><h:inputSecret class="inputField" value="#{adminLogin.password}" />
 		<br/>
 		<h:commandButton class="button" action="#{adminLogin.getSuccess()}" value="Login"/>
+	</div>
 	</h:form>
 </body>
 </html>

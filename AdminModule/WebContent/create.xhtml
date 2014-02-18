@@ -14,8 +14,10 @@
 <h1 class="title">Create</h1>
 <div class="titleUnderline"></div>
 <h:form>
-	<p class="infoHeader">Name:</p><h:inputText class="inputField" value="#{shopItem.itemName}"/>
-	<h:commandButton class="button" action="overview?faces-redirect=true" value="Create"/>
+	<div class="section">
+		<p class="infoHeader">Name:</p><h:inputText class="inputField" value="#{shopItem.itemName}"/>
+		<h:commandButton class="button" action="overview?faces-redirect=true" value="Create"/>
+	</div>
 </h:form>
 </body>
 </html>

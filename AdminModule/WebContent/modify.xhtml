@@ -13,17 +13,17 @@
 <body>
 	<h1 class="title">Modify</h1>
 	<div class="titleUnderline"></div>
-	<p class="section">
-		<h:outputLabel class="output" value="#{shopItem.itemID}"/>
+	<div class="section">
+		<h:outputLabel class="outputField" value="#{shopItem.itemID}"/>
 		<h:inputText class="inputField" value="#{shopItem.itemName}"/>
 		<h:inputText class="inputField" value="#{shopItem.itemPrice}"/>
 		<h:inputText class="inputField" value="#{shopItem.itemUrl}"/>
-	</p>
-	<p class="section">
+	</div>
+	<div class="section">
 		<h:inputTextarea class="textArea" value="#{shopItem.itemDescription}"/>
-	</p>
-	<p class="section">
+	</div>
+	<div class="section">
 		<h:commandButton class="button" value="Save"/>
-	</p>
+	</div>
 </body>
 </html>
