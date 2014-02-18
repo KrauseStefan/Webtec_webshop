@@ -31,8 +31,12 @@ public class AdminLogin implements Serializable {
 		this.password = password;
 	}
 	
+	public boolean isLooggedin(){
+		return (nameSecret.equals(name) && password.equals(passwordSecret));		
+	}
+	
 	public String getSuccess(){
-		if(nameSecret.equals(name) && password.equals(passwordSecret))
+		if(this.isLooggedin())
 			return "overview";
 		
 		return "Admin";
