@@ -4,14 +4,32 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLConnection;
 
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaders;
 import org.jdom2.output.XMLOutputter;
+import org.xml.sax.XMLReader;
+
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class CloudCon {
-
+	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
+	private final static String modifyUrl = "/modifyItem";
+	private final static String createUrl = "/createItem";
+	private final static String adjustUrl = "/adjustItemSrock";
+	private final static String listUrl = "/listItems?shopID=194";
+	private final static String shopKey = "5247EFB974D2D4D06403F61B";
+	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
+	
+	public final static int MODIFY = 0;
+	public final static int CREATE = 1;
+	public final static int ADJUST = 2;
+	public final static int LIST = 3;
+	
 	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{
 		DataOutputStream stream = new DataOutputStream(con.getOutputStream());
 		new XMLOutputter().output(doc, stream);
@@ -21,21 +39,21 @@ public class CloudCon {
 		//Receive response
 		return con.getResponseCode();		
 	}
-
-	public static Document receiveDocument(HttpURLConnection con) throws Exception{
-		return receiveDocument(con, null);
-	}
 	
-	public static Document receiveDocument(HttpURLConnection con, File fileXSD) throws Exception{
+	public static Document receiveDocument(HttpURLConnection con) throws Exception{
 		InputStream input = con.getInputStream();
 				
 		SAXBuilder xmlBuilder = new SAXBuilder();
-//		b.setXMLReaderFactory(XMLReaders.XSDVALIDATING); //TODO Test me
-		xmlBuilder.setValidation(true); 
+		xmlBuilder.setValidation(true);
+				
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL url = loader.getResource("../../xml/cloud.xsd");
+		
+		File file = new File(url.toURI());
 
-		if(fileXSD != null){
+		if(file != null){
 			xmlBuilder.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema"); 
-			xmlBuilder.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", fileXSD); 
+			xmlBuilder.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", file); 
 		}
 		Document respDoc = xmlBuilder.build(input);
 		input.close();
@@ -43,14 +61,37 @@ public class CloudCon {
 		return respDoc;
 	}
 	
-	public static HttpURLConnection createConnection(String url) throws Exception {
+	public static HttpURLConnection createConnection(int mode) throws Exception {
+		String url = baseUrl;
+		
+		switch (mode) {
+		case MODIFY:
+			url = url + modifyUrl;
+			break;
+		case CREATE:
+			url = url + createUrl;
+			break;
+		case ADJUST:
+			url = url + adjustUrl;
+			break;
+		case LIST:
+			url = url + listUrl;
+			break;
+		default:
+			break;
+		}
+				
 		HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-		connection.setRequestMethod("POST");
 		connection.setDoOutput(true);
 		connection.setRequestProperty("Content-type", "text/xml");
 		
+		if (mode == LIST) {
+			connection.setRequestMethod("GET");
+		}
+		else {
+			connection.setRequestMethod("POST");
+		}
+		
 		return connection;
 	}
-
-	
 }
