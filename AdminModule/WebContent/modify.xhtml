@@ -5,24 +5,25 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 	
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Modify</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
+    <link href="./css/mainStyle.css" rel="stylesheet" />
+	<title>Modify</title>
 </head>
 <body>
-	<div style="background-color:navy;width:100%;color:white"></div>
-	<H1>Modify</H1>
-
-	<p>
-		<h:outputLabel value="#{shopItem.itemID}"/>
-		<h:inputText value="#{shopItem.itemName}"/>
-		<h:inputText value="#{shopItem.itemPrice}"/>
-		<h:inputText value="#{shopItem.itemUrl}"/>
+	<h1 class="title">Modify</h1>
+	<div class="titleUnderline"></div>
+	<p class="section">
+		<h:outputLabel class="output" value="#{shopItem.itemID}"/>
+		<h:inputText class="inputField" value="#{shopItem.itemName}"/>
+		<h:inputText class="inputField" value="#{shopItem.itemPrice}"/>
+		<h:inputText class="inputField" value="#{shopItem.itemUrl}"/>
 	</p>
-	<p>
-		<h:inputTextarea value="#{shopItem.itemDescription}"/>
+	<p class="section">
+		<h:inputTextarea class="textArea" value="#{shopItem.itemDescription}"/>
 	</p>
-	<p>
-		<h:commandButton value="Save"/>
+	<p class="section">
+		<h:commandButton class="button" value="Save"/>
 	</p>
 </body>
 </html>

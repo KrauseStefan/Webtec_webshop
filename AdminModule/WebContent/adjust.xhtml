@@ -4,20 +4,21 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
 	
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Adjust stock</title>
-</head>
-<body>
-	<div style="background-color:navy;width:100%;color:white"></div>
-	<H1>Adjust Stock</H1>
-	
-	<p>
-		<h:inputText value="#{shopItem.itemStock}"/>
-	</p>
-	<p>
-		<h:commandButton value="Save"/>
-	</p>
-
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
+	    <link href="./css/mainStyle.css" rel="stylesheet" />
+		<title>Adjust stock</title>
+	</head>
+	<body>
+		<h1 class="title">Adjust Stock</h1>
+		<div class="titleUnderline"></div>
+		<p class="section">
+			<p class="infoHeader">Adjust:</p>
+			<h:inputText class="input" value="#{shopItem.itemStock}"/>
+		</p>
+		<p class="section">
+			<h:commandButton class="button" value="Save"/>
+		</p>
+	</body>
 </html>

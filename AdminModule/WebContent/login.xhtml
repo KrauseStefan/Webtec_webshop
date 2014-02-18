@@ -4,15 +4,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
 <head>
-<title>Admin Login</title>
+	<title>Admin Login</title>
+	<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
+    <link href="./css/mainStyle.css" rel="stylesheet" />
 </head>
 <body>
-	<h2>Please login</h2>
+	<h1 class="title">Please login</h1>
+	<div class="titleUnderline"></div>
 	<h:form>
-		<p>Username:</p><h:inputText value="#{adminLogin.name}" />
-		<p>Password:</p><h:inputSecret value="#{adminLogin.password}" />
+		<p class="infoHeader">Username:</p><h:inputText value="#{adminLogin.name}" />
+		<p class="infoHeader">Password:</p><h:inputSecret value="#{adminLogin.password}" />
 		<br/>
-		<h:commandButton action="#{adminLogin.getSuccess()}" value="Login"/>
+		<h:commandButton class="button" action="#{adminLogin.getSuccess()}" value="Login"/>
 	</h:form>
 </body>
 </html>
