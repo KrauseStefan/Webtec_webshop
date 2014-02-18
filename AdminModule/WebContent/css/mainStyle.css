@@ -1,0 +1,125 @@
+* {
+}
+
+div {
+  border-radius: 0px;
+  padding: 5px;
+}
+
+.button {
+  	max-width: 100%;
+  	min-width: 60px;
+ 	margin: 15px auto;
+}
+
+.titleUnderline {
+	background-color:navy;
+	width:100;
+	color:white;
+}
+
+.header {
+  width: 100%;  
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.header1 {
+  position: relative;
+  height: 50px;
+  margin-top:0px;
+  padding: 0px;
+}
+
+.header2 {
+  position: fixed;
+  top: 55px;
+  height: 70px;
+  z-index: 100;
+  width: 100%;
+  padding: 0px;
+  background: #70AD47;
+}
+.infoHeader {
+  width: 950px;
+  max-width: 100%;
+  min-width: 550px;
+  margin: 15px auto;
+  background: white;
+  display:block;
+}
+
+.output {
+	margin: 10px auto;
+}
+
+.textArea {
+	width: 534px;
+	height: 250px;
+}
+
+.section {
+	margin: 15px;
+}
+
+.infoHeader>div{
+  display: -webkit-box;
+  float: right; 
+  padding: 3px 10px;
+}
+
+.infoHeader a {
+    margin-left: 50px;
+}
+
+.pageContainer{
+  width: 950px;
+  position: relative;
+  top: 75px;
+  margin: 0 auto;
+}
+
+.page{
+    border: thin solid black;
+    min-height: 1000px;
+    width: 950px;
+}
+
+.sidebar{
+  width: 200px;
+}
+
+.leftSidebar {
+  position: relative;
+  height: 1000px;
+}
+
+.inputField {
+  	max-width: 100%;
+  	min-width: 60px;
+ 	margin: 15px;
+}
+
+.pageContainter {
+  position: relative;
+  top: 100px;
+  left: 200px;
+  height: 800px;
+  width: 600px;
+}
+
+.rightSidebar {
+  position: fixed;
+  height: 400px;
+  right: 0px;
+}
+
+.tableHeader {
+	margin: 10px;
+}
+
+.title {
+	text-align:center;
+	font-size:36px;
+	font-weight:700;
+}
