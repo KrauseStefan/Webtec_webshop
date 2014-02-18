@@ -14,10 +14,17 @@
 	<h1 class="title">Modify</h1>
 	<div class="titleUnderline"></div>
 	<div class="section">
-		<h:outputLabel class="outputField" value="#{shopItem.itemID}"/>
-		<h:inputText class="inputField" value="#{shopItem.itemName}"/>
-		<h:inputText class="inputField" value="#{shopItem.itemPrice}"/>
-		<h:inputText class="inputField" value="#{shopItem.itemUrl}"/>
+		<h:outputLabel class="outputField" value="ID: "/>
+		<h:outputLabel class="outputField" value="#{itemManager.shopItem.itemID}"/>
+		<h:outputLabel class="outputField" value="Name"/>
+		<h:inputText class="inputField" value="#{itemManager.shopItem.itemName}"/>
+		<h:outputLabel class="outputField" value="Price"/>
+		<h:inputText class="inputField" value="#{itemManager.shopItem.itemPrice}"/>
+		<h:outputLabel class="outputField" value="Url"/>
+		<h:inputText class="inputField" value="#{itemManager.shopItem.itemUrl}"/>
+	</div>
+	<div class="section">
+		<h:outputLabel class="outputField" value="Description"/>
 	</div>
 	<div class="section">
 		<h:inputTextarea class="textArea" value="#{shopItem.itemDescription}"/>
