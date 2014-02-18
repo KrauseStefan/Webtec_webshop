@@ -14,42 +14,42 @@
 	<h:form>
 		<h:commandButton action="create?faces-redirect=true" value="Create"/>
 	</h:form>
-	<h:dataTable border="1">
+	<h:dataTable border="1" value="#{itemMannager.items}" var="item">
 		<h:column>
         <f:facet name="header">
             <h:outputText value="ID" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemID}" />
+        <h:outputText value="#{item.itemID}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Name" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemName}" />
+        <h:outputText value="#{item.itemName}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Description" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemDescription}" />
+        <h:outputText value="#{item.itemDescription}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Url" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemUrl}" />
+        <h:outputText value="#{item.itemUrl}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Price" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemPrice}" />
+        <h:outputText value="#{item.itemPrice}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Stock" />
         </f:facet>
-        <h:outputText value="#{shopItem.itemStock}" />
+        <h:outputText value="#{item.itemStock}" />
     </h:column>
         <h:column>
         <f:facet name="header">

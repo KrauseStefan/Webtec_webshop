@@ -16,7 +16,9 @@
 		<h:inputText value="#{shopItem.itemStock}"/>
 	</p>
 	<p>
-		<h:commandButton value="Save"/>
+		<h:form>
+			<h:commandButton action="overview?faces-redirect=true" value="Save"/>
+		</h:form>
 	</p>
 
 </body>
