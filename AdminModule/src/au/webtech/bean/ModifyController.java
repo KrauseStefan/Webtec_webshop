@@ -1,13 +1,9 @@
 package au.webtech.bean;
 
 import java.net.HttpURLConnection;
-import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+
 
 import org.jdom2.Document;
 
@@ -44,14 +40,10 @@ public class ModifyController {
 		
 		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
 		
-		int response =  CloudCon.sendDocument(connection, doc);
+		CloudCon.sendDocument(connection, doc);
 		
 		//updateItems();
 		
 		return "overview?faces-redirect=true";
-	}
-	
-	public String beginModify() {		
-		return "modify?faces-redirect=true";
 	}
 }

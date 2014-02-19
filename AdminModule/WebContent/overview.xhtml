@@ -65,11 +65,8 @@
 	            <h:outputText value="Modify" class="tableHeader" />
 	        </f:facet>
 	        <h:form>
-<!-- 	        	<h:commandButton value="Modify" /> -->
 	        	<h:commandLink value="Modify" action="modify?faces-redirect=true" >
 	        		<f:setPropertyActionListener target="#{currentItem}" value="#{shopItem}" />
-<!-- 	        		<f:setPropertyActionListener target="#{modifyController.shopItem}" value="#{shopItem}" /> -->
-<!-- 						<f:param name="shopItem" value="#{modifyController.shopItem}"/> -->
 	        	</h:commandLink>
 	        </h:form>
 	    </h:column>
@@ -77,7 +74,11 @@
 	        <f:facet name="header">
 	            <h:outputText value="Adjust" class="tableHeader" />
 	        </f:facet>
-	        <h:outputText value="Adjust" />
+	        <h:form>
+	        	<h:commandLink value="Adjust" action="adjust?faces-redirect=true" >
+	        		<f:setPropertyActionListener target="#{currentItem}" value="#{shopItem}" />
+	        	</h:commandLink>
+	        </h:form>
 	    </h:column>
 		</h:dataTable>
 	</div>
