@@ -2,7 +2,7 @@
 <item xmlns="http://www.cs.au.dk/dWebTek/2014"> 
 	<itemID>2</itemID>
 	<itemName>Eiffeltårnet</itemName>
-	<itemURL>./direct/url</itemURL>
+	<itemURL>./images/eiffeltower.png</itemURL>
 	<itemPrice>12000</itemPrice>
 	<itemStock>1</itemStock>
 	<itemDescription>
