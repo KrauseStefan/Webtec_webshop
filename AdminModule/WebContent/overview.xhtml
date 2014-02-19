@@ -17,7 +17,7 @@
 		<h:form>
 			<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
 		</h:form>
-		<h:dataTable border="1" value="#{itemMannager.items}" var="shopItem">
+		<h:dataTable value="#{itemMannager.items}" var="shopItem" class="dataTable">
 			<h:column>
 	        <f:facet name="header">
 	            <h:outputText value="ID" class="tableHeader" />
