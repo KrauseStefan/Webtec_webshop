@@ -1,10 +1,14 @@
 package au.webtech.bean;
 
 import java.net.HttpURLConnection;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+
 import org.jdom2.Document;
 
 import au.webtech.CloudCon;
@@ -17,7 +21,7 @@ public class ModifyController {
 		this.shopItem = new ShopItem();
 	}
 	
-	@ManagedProperty(value = "#{param.shopItem}")
+	
 	private ShopItem shopItem;
 	
 	public ShopItem getShopItem() {
@@ -40,7 +44,7 @@ public class ModifyController {
 		
 		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
 		
-		CloudCon.sendDocument(connection, doc);
+		int response =  CloudCon.sendDocument(connection, doc);
 		
 		//updateItems();
 		

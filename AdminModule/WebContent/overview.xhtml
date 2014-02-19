@@ -59,10 +59,12 @@
 	            <h:outputText value="Modify" class="tableHeader" />
 	        </f:facet>
 	        <h:form>
-	        	<h:link value="Modify" outcome="modify" includeViewParams="true">
+<!-- 	        	<h:commandButton value="Modify" /> -->
+	        	<h:commandLink value="Modify" action="modify?faces-redirect=true" >
+	        		<f:setPropertyActionListener target="#{currentItem}" value="#{shopItem}" />
 <!-- 	        		<f:setPropertyActionListener target="#{modifyController.shopItem}" value="#{shopItem}" /> -->
-						<f:param name="shopItem" value="#{modifyController.shopItem}"/>
-	        	</h:link>
+<!-- 						<f:param name="shopItem" value="#{modifyController.shopItem}"/> -->
+	        	</h:commandLink>
 	        </h:form>
 	    </h:column>
 	        <h:column>

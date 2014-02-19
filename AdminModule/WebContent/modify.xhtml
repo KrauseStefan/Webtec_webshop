@@ -13,26 +13,29 @@
 <body>
 	<h1 class="title">Modify</h1>
 	<div class="titleUnderline"></div>
-	<div class="section">
-		<h:outputLabel class="outputField" value="ID: "/>
-		<h:outputLabel class="outputField" value="#{modifyController.shopItem.itemID}"/>
-		<h:outputLabel class="outputField" value="Name"/>
-		<h:inputText class="inputField" value="#{modifyController.shopItem.itemName}"/>
-		<h:outputLabel class="outputField" value="Price"/>
-		<h:inputText class="inputField" value="#{modifyController.shopItem.itemPrice}"/>
-		<h:outputLabel class="outputField" value="Url"/>
-		<h:inputText class="inputField" value="#{modifyController.shopItem.itemUrl}"/>
-	</div>
-	<div class="section">
-		<h:outputLabel class="outputField" value="Description"/>
-	</div>
-	<div class="section">
-		<h:inputTextarea class="textArea" value="#{modifyController.shopItem.itemDescription}"/>
-	</div>
-	<div class="section">
-		<h:form>
-			<h:commandButton class="button" value="Save" action="#{modifyController.modifyItem}"/>
-		</h:form>
-	</div>
+	<h:form>
+		<div class="section">
+			<h:outputLabel class="outputField" value="ID: "/>
+			<h:outputLabel class="outputField" value="#{currentItem.itemID}"/>
+			<h:outputLabel class="outputField" value="Name"/>
+			<h:inputText class="inputField" value="#{currentItem.itemName}"/>
+			<h:outputLabel class="outputField" value="Price"/>
+			<h:inputText class="inputField" value="#{currentItem.itemPrice}"/>
+			<h:outputLabel class="outputField" value="Url"/>
+			<h:inputText class="inputField" value="#{currentItem.itemUrl}"/>
+		</div>
+		<div class="section">
+			<h:outputLabel class="outputField" value="Description"/>
+		</div>
+		<div class="section">
+			<h:inputTextarea class="textArea" value="#{currentItem.itemDescription}"/>
+		</div>
+		<div class="section">
+		
+				<h:commandButton class="button" value="Save" action="#{modifyController.modifyItem}">
+					<f:setPropertyActionListener target="#{modifyController.shopItem}" value="#{currentItem}" />
+				</h:commandButton>
+		</div>
+	</h:form>
 </body>
 </html>
