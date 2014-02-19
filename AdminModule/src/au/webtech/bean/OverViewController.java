@@ -17,11 +17,11 @@ import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
 @ManagedBean
-public class ItemMannager {
+public class OverViewController {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 	
-	public ItemMannager() throws Exception {
+	public OverViewController() throws Exception {
 		this.items = new ArrayList<ShopItem>();
 		this.updateItems();
 	}
