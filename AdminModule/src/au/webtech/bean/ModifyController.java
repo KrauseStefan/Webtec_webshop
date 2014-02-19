@@ -1,9 +1,10 @@
 package au.webtech.bean;
 
 import java.net.HttpURLConnection;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.jdom2.Document;
 
@@ -27,6 +28,17 @@ public class ModifyController {
 	public void setShopItem(ShopItem shopItem) {
 		this.shopItem = shopItem;
 	}
+	
+	@ManagedProperty(value="#{overViewController}") 
+	private OverViewController overViewController;
+	
+	public OverViewController getOverViewController() {
+		return overViewController;
+	}
+	
+	public void setOverViewController(OverViewController overViewController) {
+		this.overViewController = overViewController;
+	}
 
 	public String modifyItem() throws Exception {
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
@@ -42,7 +54,7 @@ public class ModifyController {
 		
 		CloudCon.sendDocument(connection, doc);
 		
-		//updateItems();
+		overViewController.updateItems();
 		
 		return "overview?faces-redirect=true";
 	}
