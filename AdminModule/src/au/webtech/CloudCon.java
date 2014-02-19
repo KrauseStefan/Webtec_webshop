@@ -20,7 +20,7 @@ public class CloudCon {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
 	private final static String modifyUrl = "/modifyItem";
 	private final static String createUrl = "/createItem";
-	private final static String adjustUrl = "/adjustItemSrock";
+	private final static String adjustUrl = "/adjustItemStock";
 	private final static String listUrl = "/listItems?shopID=194";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
