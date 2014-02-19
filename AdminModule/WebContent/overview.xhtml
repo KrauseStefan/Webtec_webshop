@@ -18,11 +18,17 @@
 			<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
 		</h:form>
 		<h:dataTable value="#{overViewController.items}" var="shopItem" class="dataTable">
-			<h:column>
+		<h:column>
 	        <f:facet name="header">
 	            <h:outputText value="ID" class="tableHeader" />
 	        </f:facet>
 	        <h:outputText value="#{shopItem.itemID}" />
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Image" class="tableHeader" />
+	        </f:facet>
+	        <img src="#{shopItem.itemUrl}" alt="my image" class="smallImage" />
 	    </h:column>
 	    <h:column>
 	        <f:facet name="header">

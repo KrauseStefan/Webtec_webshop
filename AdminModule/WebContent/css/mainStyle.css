@@ -18,6 +18,11 @@ div {
 	color:white;
 }
 
+.smallImage {
+	width: 50px;
+	height: 50px;
+}
+
 .header {
   width: 100%;  
   margin: 0;
