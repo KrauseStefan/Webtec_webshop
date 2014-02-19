@@ -4,7 +4,6 @@ import java.net.HttpURLConnection;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 
 import org.jdom2.Document;
 
@@ -12,12 +11,10 @@ import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
 @ManagedBean
-@RequestScoped
-public class ModifyController {
-	public ModifyController() {
+public class AdjustController {
+	public AdjustController() {
 		this.shopItem = new ShopItem();
 	}
-	
 	
 	private ShopItem shopItem;
 	
@@ -39,18 +36,11 @@ public class ModifyController {
 	public void setOverViewController(OverViewController overViewController) {
 		this.overViewController = overViewController;
 	}
-
-	public String modifyItem() throws Exception {
-		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
+	
+	public String adjustItemStock() throws Exception {
+		HttpURLConnection connection = CloudCon.createConnection(CloudCon.ADJUST);
 		
-		Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(shopItem.getItemID()), 
-																	shopItem.getItemName(),
-																	shopItem.getItemUrl(), 
-																	String.valueOf(shopItem.getItemPrice()), 
-																	String.valueOf(shopItem.getItemStock()), 
-																	shopItem.getItemDescription());
-		
-		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
+		Document doc = DocumentGenerator.adjustItemStockDocument(String.valueOf(shopItem.getItemID()), String.valueOf(shopItem.getItemStock()));
 		
 		CloudCon.sendDocument(connection, doc);
 		

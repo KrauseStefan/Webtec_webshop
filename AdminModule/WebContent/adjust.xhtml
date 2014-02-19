@@ -12,12 +12,16 @@
 	<body>
 		<h1 class="title">Adjust Stock</h1>
 		<div class="titleUnderline"></div>
-		<div class="section">
-			<p class="infoHeader">Adjust:</p>
-			<h:inputText class="input" value="#{shopItem.itemStock}"/>
-		</div>
-		<div class="section">
-			<h:commandButton class="button" value="Save"/>
-		</div>
+		<h:form>
+			<div class="section">
+				<p class="infoHeader">Adjust:</p>
+				<h:inputText class="input" value="#{currentItem.itemStock}"/>
+			</div>
+			<div class="section">
+				<h:commandButton class="button" value="Save" action="#{adjustController.adjustItemStock}">
+					<f:setPropertyActionListener target="#{adjustController.shopItem}" value="#{currentItem}" />
+				</h:commandButton>
+			</div>
+		</h:form>
 	</body>
 </html>
