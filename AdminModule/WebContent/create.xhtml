@@ -15,8 +15,8 @@
 <div class="titleUnderline"></div>
 <h:form>
 	<div class="section">
-		<p class="infoHeader">Name:</p><h:inputText class="inputField" value="#{shopItem.itemName}"/>
-		<h:commandButton class="button" action="overview?faces-redirect=true" value="Create"/>
+		<p id="name" class="infoHeader">Name:</p><h:inputText class="inputField" value="#{createController.shopItem.itemName}"/>
+		<h:commandButton class="button" action="#{createController.createItem}" value="Create"/>
 	</div>
 </h:form>
 </body>

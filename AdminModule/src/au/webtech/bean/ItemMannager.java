@@ -6,22 +6,29 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 
 import au.webtech.CloudCon;
+import au.webtech.DocumentGenerator;
 
 @ManagedBean
 public class ItemMannager {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 	
-	private List<ShopItem> items = new ArrayList<ShopItem>();
+	public ItemMannager() throws Exception {
+		this.items = new ArrayList<ShopItem>();
+		this.updateItems();
+	}
+	
+	private List<ShopItem> items;
 	
 	public List<ShopItem> getItems() throws Exception {
-		this.updateItems();
 		return items;
 	}
 	public void setItemID(List<ShopItem> itemList) {

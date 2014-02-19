@@ -15,22 +15,24 @@
 	<div class="titleUnderline"></div>
 	<div class="section">
 		<h:outputLabel class="outputField" value="ID: "/>
-		<h:outputLabel class="outputField" value="#{itemManager.shopItem.itemID}"/>
+		<h:outputLabel class="outputField" value="#{modifyController.shopItem.itemID}"/>
 		<h:outputLabel class="outputField" value="Name"/>
-		<h:inputText class="inputField" value="#{itemManager.shopItem.itemName}"/>
+		<h:inputText class="inputField" value="#{modifyController.shopItem.itemName}"/>
 		<h:outputLabel class="outputField" value="Price"/>
-		<h:inputText class="inputField" value="#{itemManager.shopItem.itemPrice}"/>
+		<h:inputText class="inputField" value="#{modifyController.shopItem.itemPrice}"/>
 		<h:outputLabel class="outputField" value="Url"/>
-		<h:inputText class="inputField" value="#{itemManager.shopItem.itemUrl}"/>
+		<h:inputText class="inputField" value="#{modifyController.shopItem.itemUrl}"/>
 	</div>
 	<div class="section">
 		<h:outputLabel class="outputField" value="Description"/>
 	</div>
 	<div class="section">
-		<h:inputTextarea class="textArea" value="#{shopItem.itemDescription}"/>
+		<h:inputTextarea class="textArea" value="#{modifyController.shopItem.itemDescription}"/>
 	</div>
 	<div class="section">
-		<h:commandButton class="button" value="Save"/>
+		<h:form>
+			<h:commandButton class="button" value="Save" action="#{modifyController.modifyItem}"/>
+		</h:form>
 	</div>
 </body>
 </html>

@@ -5,4 +5,14 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+<!-- 	<managed-bean> -->
+<!-- 		<managed-bean-name>ItemMannager</managed-bean-name> -->
+<!-- 		<managed-bean-class>au.webtech.bean.ItemMannager</managed-bean-class> -->
+<!-- 		<managed-bean-scope>application</managed-bean-scope> -->
+<!-- 		<managed-property> -->
+<!-- 			<property-name>shopItem</property-name> -->
+<!-- 			<property-class>ShopItem</property-class> -->
+<!-- 			<value/> -->
+<!-- 		</managed-property> -->
+<!-- 	</managed-bean> -->
 </faces-config>
