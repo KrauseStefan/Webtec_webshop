@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 public class ShopItem {
 	public static final String ID = "itemID";
 	public static final String NAME = "itemName";
-	public static final String URL = "itemUrl";
+	public static final String URL = "itemURL";
 	public static final String PRICE = "itemPrice";
 	public static final String STOCK = "itemStock";
 	public static final String DESCRIPTION = "itemDescription";
