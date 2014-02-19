@@ -124,3 +124,20 @@ div {
 	font-size:36px;
 	font-weight:700;
 }
+
+.dataTable tr th{
+	background-color:navy; 
+	color: white;
+}
+.dataTable tr:nth-child(odd) { 
+	background-color:#eee; 
+}
+
+.dataTable tr:nth-child(even){		 
+	background-color:#fff; 
+}
+
+.dataTable tr:hover{
+	background-color:navy; 
+	color: white;	
+}
