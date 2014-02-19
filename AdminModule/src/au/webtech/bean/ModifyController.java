@@ -2,13 +2,9 @@ package au.webtech.bean;
 
 import java.net.HttpURLConnection;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.view.ViewScoped;
-
 import org.jdom2.Document;
 
 import au.webtech.CloudCon;

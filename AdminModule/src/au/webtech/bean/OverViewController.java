@@ -6,15 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 
 import au.webtech.CloudCon;
-import au.webtech.DocumentGenerator;
 
 @ManagedBean
 public class OverViewController {
