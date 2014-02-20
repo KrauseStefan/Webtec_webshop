@@ -156,6 +156,8 @@ div {
 
 .dataTable td{
 	padding: 0 5px;
+	max-width: 350px;
+	word-wrap:break-word;
 }
 
 .dataTable th{

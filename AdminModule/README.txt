@@ -1,6 +1,8 @@
+Administration module available on http://llama02.cs.au.dk:12985/Admin
+
 Webshop id 194
 
-Source: https://github.com/KrauseStefan/Webtec_webshop
+Source code: https://github.com/KrauseStefan/Webtec_webshop/AdminModule
 
 Stefan Krause-Kjær 	201300256
 Theis Nickelsen		201300249

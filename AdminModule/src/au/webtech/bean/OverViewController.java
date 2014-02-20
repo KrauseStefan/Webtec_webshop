@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -20,6 +21,7 @@ import au.webtech.DocumentGenerator;
  */
 
 @ManagedBean
+@SessionScoped
 public class OverViewController {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
