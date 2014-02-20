@@ -49,8 +49,9 @@ public class OverViewController {
 		}
 		
 		items.clear();
-		
+	
 		Iterator it = itemDoc.getRootElement().getChildren().iterator();
+
 		
 		while(it.hasNext()) {			
 			Element element = (Element)it.next();

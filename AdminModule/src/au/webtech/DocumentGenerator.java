@@ -1,19 +1,9 @@
 package au.webtech;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.filter.Filters;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.XMLOutputter;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 
@@ -102,19 +92,15 @@ public class DocumentGenerator {
 		return new Document(item);
 	}
 	
-	public static Document itemDocument(String id, String name, String url, String price, String stock, String description){
+	public static Document itemDocument(String id, String name, String url, String price, String stock, Element description){
 		Element item = new Element("item", nsX);
-		
-//		System.out.print(new XMLOutputter().outputString(description));
-		
-		Element descriptionDoc = new Element("document", nsX).addContent(description);
-		
+						
 		item.addContent((new Element("itemID", nsX)).setText(id));
 		item.addContent((new Element("itemName", nsX)).setText(name));
 		item.addContent((new Element("itemURL", nsX)).setText(url));
 		item.addContent((new Element("itemPrice", nsX)).setText(price));
 		item.addContent((new Element("itemStock", nsX)).setText(stock));
-		item.addContent((new Element("itemDescription", nsX)).addContent(descriptionDoc));
+		item.addContent(description.clone());
 		
 		return new Document(item);
 	}
@@ -142,7 +128,7 @@ public class DocumentGenerator {
 	
 	public static String getItemValueUsingXpath(Document document, String xPathExp, Namespace ns){
 		Element element = getItemUsingXpath(document, xPathExp, ns);
-		return element.getTextTrim();	
+		return element.getTextTrim();
 	}
 
 }

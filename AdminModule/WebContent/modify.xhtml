@@ -28,13 +28,14 @@
 			<h:outputLabel class="outputField" value="Description"/>
 		</div>
 		<div class="section">
-			<h:inputTextarea class="textArea" value="#{currentItem.itemDescription}"/>
+			<h:inputTextarea class="textArea xmlView" value="#{currentItem.itemDescription}"/>
 		</div>
 		<div class="section">
-		
-				<h:commandButton class="button" value="Save" action="#{modifyController.modifyItem}">
-					<f:setPropertyActionListener target="#{modifyController.shopItem}" value="#{currentItem}" />
-				</h:commandButton>
+			<h:commandButton class="button" value="Save"
+				action="#{modifyController.modifyItem}">
+				<f:setPropertyActionListener target="#{modifyController.shopItem}"
+					value="#{currentItem}" />
+			</h:commandButton>
 		</div>
 	</h:form>
 </body>

@@ -1,9 +1,20 @@
 package au.webtech.bean;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
+import org.jdom2.Content;
+import org.jdom2.Content.CType;
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
+import org.jdom2.Text;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
 @ManagedBean
@@ -14,15 +25,17 @@ public class ShopItem {
 	public static final String PRICE = "itemPrice";
 	public static final String STOCK = "itemStock";
 	public static final String DESCRIPTION = "itemDescription";
+	
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
-	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
+	private final static Namespace ns = Namespace.getNamespace("", namespaceUrl);
 
 	private long itemID;
 	private String itemName;
 	private String itemUrl;
 	private long itemPrice;
 	private long itemStock;
-	private String itemDescription;
+	
+	private Element descElm;
 	
 	public ShopItem(){
 		
@@ -30,19 +43,15 @@ public class ShopItem {
 	
 	public ShopItem(Element element){
 		
-		Element descriptionElement = element.getChild(ShopItem.DESCRIPTION, nsX);
+		this.descElm = element.getChild(ShopItem.DESCRIPTION, ns);
 		
-		String description =  new XMLOutputter().outputString(descriptionElement);
-		
-		setItemDescription(description);
-
-		setItemID(Long.parseLong(element.getChildText(ShopItem.ID, nsX)));
-		setItemPrice(Long.parseLong(element.getChildText(ShopItem.PRICE, nsX)));
-		setItemStock(Long.parseLong(element.getChildText(ShopItem.STOCK, nsX)));
-		setItemName(element.getChildText(ShopItem.NAME, nsX));
-		setItemUrl(element.getChildText(ShopItem.URL, nsX));
-
+		setItemID(Long.parseLong(element.getChildText(ShopItem.ID, ns)));
+		setItemPrice(Long.parseLong(element.getChildText(ShopItem.PRICE, ns)));
+		setItemStock(Long.parseLong(element.getChildText(ShopItem.STOCK, ns)));
+		setItemName(element.getChildText(ShopItem.NAME, ns));
+		setItemUrl(element.getChildText(ShopItem.URL, ns));
 	}
+	
 
 	public long getItemID() {
 		return itemID;
@@ -80,9 +89,65 @@ public class ShopItem {
 	}
 	
 	public String getItemDescription() {
-		return itemDescription;
+		return new XMLOutputter().outputElementContentString(descElm);
 	}
-	public void setItemDescription(String itemDescription) {
-		this.itemDescription = itemDescription;
+
+	public void setItemDescription(String itemDescription) throws JDOMException, IOException {
+		StringReader is = new StringReader(itemDescription);
+		
+		SAXBuilder sb = new SAXBuilder();
+		Document dDoc = sb.build(is);
+		
+		Element dDocElm = dDoc.getRootElement().clone();
+		
+		this.descElm.removeContent();
+		this.descElm.addContent(dDocElm);		
 	}
+	
+	
+	private String parseXmlToHtml(List<Content> docElements){
+		String html = "";
+		
+		Iterator<Content> li = docElements.listIterator();
+		while(li.hasNext()) {
+	          Content content = li.next();
+	          CType type = content.getCType();
+	          if(type == CType.Element){
+	        	  Element element = (Element) content;
+	        	  if(element.getName().equals("bold"))
+	        		  html += "<b>";
+	        	  else if(element.getName().equals("italics"))	        	  
+	        		  html += "<i>";
+	        	  
+        		  html += parseXmlToHtml(element.getContent());
+	        	  
+	        	  if(element.getName().equals("bold"))
+	        		  html += "</b>";
+	        	  else if(element.getName().equals("italics"))	        	  
+	        		  html += "</i>";
+	        	  
+	          } else if(type == CType.Text){
+	        	  Text text = (Text) content;
+	        	  html += text.getText();
+	          }
+	          
+	    }
+				
+		return html;
+	}
+	
+	public String getFormattedDocument(){
+		
+		List<Content> docElements = descElm.getChild("document", ns).getContent();
+		String html = parseXmlToHtml(docElements).trim();
+
+		html = html.replaceAll("\n", "<br>");
+		return html;
+	}
+	
+	public Element getItemDescriptionElm(){
+		System.out.print(new XMLOutputter().outputString(descElm));
+		return descElm;
+	}
+	
 }
