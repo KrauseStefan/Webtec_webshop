@@ -1,6 +1,6 @@
 HOW TO RUN
 
-Take the file Admin.war and place it in the <tomcat>\webapps
+Take the file Admin.war and place it in  folder <tomcat>\webapps
 Start the tomcat server and wait a minute for the server to start and deploy. Navigate your favorite browser to localhost:<port>/Admin
 
 Username: admin
