@@ -1,7 +1,10 @@
 package au.webtech.bean;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 
@@ -105,10 +108,22 @@ public class ShopItem {
 	}
 
 	public void setItemDescription(String itemDescription)
-			throws JDOMException, IOException {
+			throws JDOMException, IOException, URISyntaxException {
 		StringReader is = new StringReader(itemDescription);
 
 		SAXBuilder sb = new SAXBuilder();
+		sb.setValidation(true);
+		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL url = loader.getResource("../../xml/cloud.xsd");
+		
+		File file = new File(url.toURI());
+
+		if(file != null){
+			sb.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema"); 
+			sb.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", file); 
+		}
+		
 		Document dDoc = sb.build(is);
 
 		Element dDocElm = dDoc.getRootElement().clone();

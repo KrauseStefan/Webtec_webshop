@@ -63,6 +63,7 @@ public class CloudCon {
 			xmlBuilder.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema"); 
 			xmlBuilder.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", file); 
 		}
+		
 		Document respDoc = xmlBuilder.build(input);
 		input.close();
 		
