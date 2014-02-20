@@ -137,12 +137,28 @@ div {
 .dataTable tr:nth-child(odd) { 
 	background-color:#eee; 
 }
+.dataTable tr:nth-child(odd) td{
+	border: #fff solid thin;
+}
 
-.dataTable tr:nth-child(even){		 
+.dataTable tr:nth-child(even){
 	background-color:#fff; 
+}
+
+.dataTable tr:nth-child(even) td{
+	border: #eee solid thin;
 }
 
 .dataTable tr:hover{
 	background-color:navy; 
-	color: white;	
+	color: white;
+}
+
+.dataTable td{
+	padding: 0 5px;
+}
+
+.dataTable th{
+	padding: 0 5px;
+	border: white solid thin;
 }
