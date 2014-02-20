@@ -11,6 +11,10 @@ import org.jdom2.Document;
 import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
+/**
+ * Class is responsible for handling of the modify view and the modification of ShopItems.
+ */
+
 @ManagedBean
 @RequestScoped
 public class ModifyController {

@@ -16,6 +16,10 @@ import org.xml.sax.XMLReader;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+/**
+ * Class is responsible for handling of http connection to the cloud server.
+ */
+
 public class CloudCon {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
 	private final static String modifyUrl = "/modifyItem";

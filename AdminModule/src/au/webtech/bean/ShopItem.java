@@ -17,6 +17,10 @@ import org.jdom2.Text;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
+/**
+ * Class is a model of a ShopItem.
+ */
+
 @ManagedBean
 public class ShopItem {
 	public static final String ID = "itemID";
