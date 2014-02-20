@@ -6,7 +6,11 @@ div {
   padding: 5px;
 }
 
-.button {
+ul {
+	padding-left: 20px;
+}
+
+button {
   	max-width: 100%;
   	min-width: 60px;
  	margin: 3px;
