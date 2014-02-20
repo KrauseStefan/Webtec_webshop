@@ -10,7 +10,7 @@ Enjoy!
 --------------------------------------------------------------------------
 INFO
 
-Administration module on llama cluster: http://llama04.cs.au.dk:12985/Admin
+Administration module on llama cluster: http://llama07.cs.au.dk:12985/Admin
 
 Source code: https://github.com/KrauseStefan/Webtec_webshop/AdminModule
 
