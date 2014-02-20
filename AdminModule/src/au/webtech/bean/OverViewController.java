@@ -10,8 +10,6 @@ import javax.faces.bean.SessionScoped;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.Namespace;
-
 import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
@@ -23,8 +21,6 @@ import au.webtech.DocumentGenerator;
 @ManagedBean
 @SessionScoped
 public class OverViewController {
-	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
-	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 	
 	private List<ShopItem> items;
 	private ShopItem shopItem;
@@ -42,21 +38,21 @@ public class OverViewController {
 		
 		List<Long> deletedItemIDs = new ArrayList<Long>();
 		
-		Iterator i = deletedDoc.getRootElement().getChildren().iterator();
+		Iterator<Element> i = deletedDoc.getRootElement().getChildren().iterator();
 		
 		while(i.hasNext()) {			
-			Element element = (Element)i.next();
+			Element element = i.next();
 			
 			deletedItemIDs.add(Long.parseLong(element.getText()));
 		}
 		
 		items.clear();
 	
-		Iterator it = itemDoc.getRootElement().getChildren().iterator();
+		Iterator<Element> it = itemDoc.getRootElement().getChildren().iterator();
 
 		
 		while(it.hasNext()) {			
-			Element element = (Element)it.next();
+			Element element = it.next();
 			ShopItem item = new ShopItem(element);
 			
 			if (!deletedItemIDs.contains(item.getItemID()))
@@ -68,7 +64,7 @@ public class OverViewController {
 	{
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.DELETE);
 		Document doc = DocumentGenerator.deleteItemDocument(String.valueOf(shopItem.getItemID()));
-		int response = CloudCon.sendDocument(connection, doc);
+		CloudCon.sendDocument(connection, doc);
 		
 		this.updateItems();
 		

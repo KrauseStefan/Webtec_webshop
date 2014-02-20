@@ -15,10 +15,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.Text;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.LineSeparator;
 import org.jdom2.output.XMLOutputter;
-import org.jdom2.output.Format.TextMode;
 
 /**
  * Class is a model of a ShopItem.
@@ -119,7 +116,6 @@ public class ShopItem {
 
 	private String parseXmlToHtml(List<Content> docElements) {
 		String html = "";
-		boolean first = true;
 		Iterator<Content> li = docElements.listIterator();
 		while (li.hasNext()) {
 			Content content = li.next();
@@ -151,13 +147,9 @@ public class ShopItem {
 			} else if (type == CType.Text) {
 				Text text = (Text) content;
 				String str = text.getText();
-				// System.out.print(str);
 				html += str;
 			}
-
-			first = false;
 		}
-
 		return html;
 	}
 
@@ -171,13 +163,6 @@ public class ShopItem {
 	}
 
 	public Element getItemDescriptionElm() {
-		XMLOutputter xmlout = new XMLOutputter();
-		// Format format = xmlout.getFormat();
-		// format.setExpandEmptyElements(true);
-		// // format.setTextMode(TextMode.NORMALIZE);
-		// format.setIndent("");
-		// // format.setLineSeparator(LineSeparator.NONE);
-		System.out.print(xmlout.outputString(descElm));
 		return descElm;
 	}
 

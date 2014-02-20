@@ -4,17 +4,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
-
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.input.sax.XMLReaders;
 import org.jdom2.output.XMLOutputter;
-import org.xml.sax.XMLReader;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * Class is responsible for handling of http connection to the cloud server.
@@ -28,9 +21,7 @@ public class CloudCon {
 	private final static String deleteUrl = "/deleteItem";
 	private final static String listUrl = "/listItems?shopID=194";
 	private final static String listDeletedUrl = "/listDeletedItemIDs?shopID=194";
-	private final static String shopKey = "5247EFB974D2D4D06403F61B";
-	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
-	
+
 	public final static int MODIFY = 0;
 	public final static int CREATE = 1;
 	public final static int ADJUST = 2;

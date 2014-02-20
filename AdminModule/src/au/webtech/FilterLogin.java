@@ -16,59 +16,53 @@ import javax.servlet.http.HttpSession;
 import au.webtech.bean.AdminLogin;
 
 /**
- * Servlet Filter implementation class FilterLogin
+ * Filter used to ensure users are always logged in, this filter is applied to
+ * all jsf pages in use. It works together with AdminLogin bean.
+ * 
+ * If AdminLogin reports that the user is logged in this filter will not take
+ * action, else it redirects to the login page
  */
-//@WebFilter("/*")
-@WebFilter(filterName="authFilter",servletNames={"Faces Servlet"})
+@WebFilter(filterName = "authFilter", servletNames = { "Faces Servlet" })
 public class FilterLogin implements Filter {
 
-//	@Inject private Instance<AdminLogin> adminBean;
-	
-    public FilterLogin() {
-    }
-
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
+	public FilterLogin() {
 	}
 
-	private AdminLogin getAdminLoginBean(ServletRequest request){
-		HttpSession session = ((HttpServletRequest)request).getSession();
+	private AdminLogin getAdminLoginBean(ServletRequest request) {
+		HttpSession session = ((HttpServletRequest) request).getSession();
 		String neededBean = "adminLogin";
+
 		Enumeration<String> names = session.getAttributeNames();
 		AdminLogin adminLogin = null;
-		while(names.hasMoreElements()){
+		while (names.hasMoreElements()) {
 			String name = names.nextElement();
-			if(name.equals(neededBean)){
+			if (name.equals(neededBean)) {
 				adminLogin = (AdminLogin) session.getAttribute(neededBean);
 				break;
 			}
-		}		
-		 
+		}
+
 		return adminLogin;
 	}
-	
+
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String url = req.getServletPath();
 		boolean doRedirect = false;
-		
-		
+
 		AdminLogin adminLogin = getAdminLoginBean(request);
-		
-		if(!url.equals("/login.jsf")){			
-			if(adminLogin == null || !adminLogin.isLooggedin()){
+
+		if (!url.equals("/login.jsf")) {
+			if (adminLogin == null || !adminLogin.isLooggedin()) {
 				doRedirect = true;
-			}else{
-				
 			}
 		}
-				
-		if(doRedirect){
+
+		if (doRedirect) {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.reset();
 			resp.sendRedirect("login.jsf");
@@ -83,6 +77,12 @@ public class FilterLogin implements Filter {
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 
+	}
+
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
 	}
 
 }
