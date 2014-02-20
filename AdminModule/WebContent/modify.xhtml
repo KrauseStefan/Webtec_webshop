@@ -3,32 +3,34 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
-	
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
-    <link href="./css/mainStyle.css" rel="stylesheet" />
-	<title>Modify</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link href="./css/html5-doctor-reset-stylesheet.min.css"
+	rel="stylesheet" />
+<link href="./css/mainStyle.css" rel="stylesheet" />
+<title>Modify</title>
 </head>
 <body>
 	<h1 class="title">Modify</h1>
 	<div class="titleUnderline"></div>
 	<h:form>
 		<div class="section">
-			<h:outputLabel class="outputField" value="ID: "/>
-			<h:outputLabel class="outputField" value="#{currentItem.itemID}"/>
-			<h:outputLabel class="outputField" value="Name"/>
-			<h:inputText class="inputField" value="#{currentItem.itemName}"/>
-			<h:outputLabel class="outputField" value="Price"/>
-			<h:inputText class="inputField" value="#{currentItem.itemPrice}"/>
-			<h:outputLabel class="outputField" value="Url"/>
-			<h:inputText class="inputField" value="#{currentItem.itemUrl}"/>
+			<h:outputLabel class="outputField" value="ID: " />
+			<h:outputLabel class="outputField" value="#{currentItem.itemID}" />
+			<h:outputLabel class="outputField" value="Name" />
+			<h:inputText class="inputField" value="#{currentItem.itemName}" />
+			<h:outputLabel class="outputField" value="Price" />
+			<h:inputText class="inputField" value="#{currentItem.itemPrice}" />
+			<h:outputLabel class="outputField" value="Url" />
+			<h:inputText class="inputField" value="#{currentItem.itemUrl}" />
 		</div>
 		<div class="section">
-			<h:outputLabel class="outputField" value="Description"/>
+			<h:outputLabel class="outputField" value="Description" />
 		</div>
 		<div class="section">
-			<h:inputTextarea class="textArea xmlView" value="#{currentItem.itemDescription}"/>
+			<h:inputTextarea class="textArea xmlView"
+				value="#{currentItem.itemDescription}" />
 		</div>
 		<div class="section">
 			<h:commandButton class="button" value="Save"
@@ -37,6 +39,17 @@
 					value="#{currentItem}" />
 			</h:commandButton>
 		</div>
+		<div>
+			<p>Legal tags in description</p>
+			<ul>
+				<li>&lt;bold&gt;</li>
+				<li>&lt;italics&gt;</li>
+				<li>&lt;list&gt;</li>
+				<li>&lt;item&gt; Only allowed within a list</li>
+			</ul>
+			<p>The root element must be &lt;document&gt;, all elements must be part of the namespace "http://www.cs.au.dk/dWebTek/2014"</p>
+		</div>
 	</h:form>
+
 </body>
 </html>
