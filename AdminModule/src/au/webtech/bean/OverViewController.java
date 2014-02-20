@@ -39,19 +39,10 @@ public class OverViewController {
 		
 		Iterator it = doc.getRootElement().getChildren().iterator();
 		
-		while(it.hasNext()) {
-			
+		while(it.hasNext()) {			
 			Element element = (Element)it.next();
-
-			ShopItem item = new ShopItem();
-			item.setItemID(Long.parseLong(element.getChildText(ShopItem.ID, nsX)));
-			item.setItemPrice(Long.parseLong(element.getChildText(ShopItem.PRICE, nsX)));
-			item.setItemStock(Long.parseLong(element.getChildText(ShopItem.STOCK, nsX)));
-			item.setItemName(element.getChildText(ShopItem.NAME, nsX));
-			item.setItemUrl(element.getChildText(ShopItem.URL, nsX));
-			item.setItemDescription(element.getChildText(ShopItem.DESCRIPTION, nsX));
 			
-			items.add(item);
+			items.add(new ShopItem(element));
 		}
 	}
 }
