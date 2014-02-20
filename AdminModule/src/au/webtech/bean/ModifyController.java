@@ -42,13 +42,13 @@ public class ModifyController {
 
 	public String modifyItem() throws Exception {
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
-		
+
 		Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(shopItem.getItemID()), 
 																	shopItem.getItemName(),
 																	shopItem.getItemUrl(), 
 																	String.valueOf(shopItem.getItemPrice()), 
 																	String.valueOf(shopItem.getItemStock()), 
-																	shopItem.getItemDescription());
+																	shopItem.getItemDescriptionElm());
 		
 		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
 		

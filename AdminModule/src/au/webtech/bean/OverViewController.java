@@ -13,10 +13,7 @@ import org.jdom2.Namespace;
 import au.webtech.CloudCon;
 
 @ManagedBean
-public class OverViewController {
-	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
-	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
-	
+public class OverViewController {	
 	public OverViewController() throws Exception {
 		this.items = new ArrayList<ShopItem>();
 		this.updateItems();
@@ -37,7 +34,7 @@ public class OverViewController {
 		
 		items.clear();
 		
-		Iterator it = doc.getRootElement().getChildren().iterator();
+		Iterator<?> it = doc.getRootElement().getChildren().iterator();
 		
 		while(it.hasNext()) {			
 			Element element = (Element)it.next();

@@ -162,3 +162,7 @@ div {
 	padding: 0 5px;
 	border: white solid thin;
 }
+
+.xmlView {
+	white-space: pre-wrap;
+}

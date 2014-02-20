@@ -26,9 +26,9 @@
 	    </h:column>
 	    <h:column>
 	        <f:facet name="header">
-	            <h:outputText value="Image" class="tableHeader" />
+	            <h:outputText value="Image" class="tableHeader"/>
 	        </f:facet>
-	        <img src="#{shopItem.itemUrl}" alt="my image" class="smallImage" />
+	        <img src="#{shopItem.itemUrl}" title="#{shopItem.itemUrl}" alt="my image" class="smallImage" />
 	    </h:column>
 	    <h:column>
 	        <f:facet name="header">
@@ -40,13 +40,13 @@
 	        <f:facet name="header">
 	            <h:outputText value="Description" class="tableHeader" />
 	        </f:facet>
-	        <h:outputText value="#{shopItem.itemDescription}" />
+	        <h:outputText escape="false" value="#{shopItem.formattedDocument}" style="width: 300px;"/>
 	    </h:column>
 	    <h:column>
 	        <f:facet name="header">
 	            <h:outputText value="Url" class="tableHeader" />
 	        </f:facet>
-	        <h:outputText value="#{shopItem.itemUrl}" />
+	        <h:outputText value="#{shopItem.itemUrl}" style="width: 300px;"/>
 	    </h:column>
 	    <h:column>
 	        <f:facet name="header">
