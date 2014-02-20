@@ -16,12 +16,18 @@ import org.xml.sax.XMLReader;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+/**
+ * Class is responsible for handling of http connection to the cloud server.
+ */
+
 public class CloudCon {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
 	private final static String modifyUrl = "/modifyItem";
 	private final static String createUrl = "/createItem";
 	private final static String adjustUrl = "/adjustItemStock";
+	private final static String deleteUrl = "/deleteItem";
 	private final static String listUrl = "/listItems?shopID=194";
+	private final static String listDeletedUrl = "/listDeletedItemIDs?shopID=194";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	
@@ -29,8 +35,10 @@ public class CloudCon {
 	public final static int CREATE = 1;
 	public final static int ADJUST = 2;
 	public final static int LIST = 3;
+	public final static int DELETE = 4;
+	public final static int LISTDELETED = 5;
 	
-	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{
+	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{		
 		DataOutputStream stream = new DataOutputStream(con.getOutputStream());
 		new XMLOutputter().output(doc, stream);
 		stream.flush();
@@ -77,6 +85,12 @@ public class CloudCon {
 		case LIST:
 			url = url + listUrl;
 			break;
+		case DELETE:
+			url = url + deleteUrl;
+			break;
+		case LISTDELETED:
+			url = url + listDeletedUrl;
+			break;
 		default:
 			break;
 		}
@@ -85,7 +99,7 @@ public class CloudCon {
 		connection.setDoOutput(true);
 		connection.setRequestProperty("Content-type", "text/xml");
 		
-		if (mode == LIST) {
+		if (mode == LIST || mode == LISTDELETED) {
 			connection.setRequestMethod("GET");
 		}
 		else {

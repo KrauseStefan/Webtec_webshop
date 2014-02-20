@@ -20,6 +20,10 @@ import org.jdom2.output.LineSeparator;
 import org.jdom2.output.XMLOutputter;
 import org.jdom2.output.Format.TextMode;
 
+/**
+ * Class is a model of a ShopItem.
+ */
+
 @ManagedBean
 public class ShopItem {
 	public static final String ID = "itemID";

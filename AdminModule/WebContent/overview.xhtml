@@ -16,6 +16,7 @@
 	<div class="section">
 		<h:form>
 			<h:commandButton class="button" action="create?faces-redirect=true" value="Create"/>
+			<h:commandButton class="button" action="#{adminLogin.logout}" value="Logout"/>
 		</h:form>
 		<h:dataTable value="#{overViewController.items}" var="shopItem" class="dataTable">
 		<h:column>
@@ -70,13 +71,23 @@
 	        	</h:commandLink>
 	        </h:form>
 	    </h:column>
-	        <h:column>
+	    <h:column>
 	        <f:facet name="header">
 	            <h:outputText value="Adjust" class="tableHeader" />
 	        </f:facet>
 	        <h:form>
 	        	<h:commandLink value="Adjust" action="adjust?faces-redirect=true" >
 	        		<f:setPropertyActionListener target="#{currentItem}" value="#{shopItem}" />
+	        	</h:commandLink>
+	        </h:form>
+	    </h:column>
+	    <h:column>
+	        <f:facet name="header">
+	            <h:outputText value="Delete" class="tableHeader" />
+	        </f:facet>
+	        <h:form>
+	        	<h:commandLink value="Delete" action="#{overViewController.deleteItem}" >
+	        		<f:setPropertyActionListener target="#{overViewController.shopItem}" value="#{shopItem}" />
 	        	</h:commandLink>
 	        </h:form>
 	    </h:column>

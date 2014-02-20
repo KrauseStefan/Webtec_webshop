@@ -10,31 +10,18 @@ import org.jdom2.Document;
 import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
+/**
+ * Class is responsible for the create view and creation of new items.
+ */
+
 @ManagedBean
 public class CreateController {
-	public CreateController() {
-		this.shopItem = new ShopItem();
-	}
-	
-	private ShopItem shopItem;
-	
-	public ShopItem getShopItem() {
-		return shopItem;
-	}
-
-	public void setShopItem(ShopItem shopItem) {
-		this.shopItem = shopItem;
-	}
-	
 	@ManagedProperty(value="#{overViewController}") 
 	private OverViewController overViewController;
-	
-	public OverViewController getOverViewController() {
-		return overViewController;
-	}
-	
-	public void setOverViewController(OverViewController overViewController) {
-		this.overViewController = overViewController;
+	private ShopItem shopItem;
+
+	public CreateController() {
+		this.shopItem = new ShopItem();
 	}
 	
 	public String createItem() throws Exception {
@@ -46,5 +33,21 @@ public class CreateController {
 		overViewController.updateItems();
 		
 		return "overview?faces-redirect=true";
+	}
+	
+	public ShopItem getShopItem() {
+		return shopItem;
+	}
+
+	public void setShopItem(ShopItem shopItem) {
+		this.shopItem = shopItem;
+	}
+	
+	public OverViewController getOverViewController() {
+		return overViewController;
+	}
+	
+	public void setOverViewController(OverViewController overViewController) {
+		this.overViewController = overViewController;
 	}
 }

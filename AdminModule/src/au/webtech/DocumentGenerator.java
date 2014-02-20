@@ -7,6 +7,10 @@ import org.jdom2.filter.Filters;
 import org.jdom2.xpath.XPathExpression;
 import org.jdom2.xpath.XPathFactory;
 
+/**
+ * Class is responsible for generation of the different documents.
+ */
+
 public class DocumentGenerator {
 	private final static String namespaceUrl = "http://www.cs.au.dk/dWebTek/2014";
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";

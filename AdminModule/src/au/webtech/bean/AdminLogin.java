@@ -2,7 +2,12 @@ package au.webtech.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import java.io.Serializable;
+
+/**
+ * Class is responsible for login and logout.
+ */
 
 @ManagedBean
 @SessionScoped
@@ -14,6 +19,13 @@ public class AdminLogin implements Serializable {
 	
 	private String name;
 	private String password;
+	
+	public String logout() {
+		password = "";
+		name = "";
+		
+		return "login";
+	}
 
 	public String getName() {
 		return name;
