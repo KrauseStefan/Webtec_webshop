@@ -52,6 +52,7 @@ public class ModifyController {
 		
 		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
 		
+
 		CloudCon.sendDocument(connection, doc);
 		
 		overViewController.updateItems();

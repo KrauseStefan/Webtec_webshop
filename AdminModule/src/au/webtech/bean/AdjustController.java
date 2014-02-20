@@ -10,31 +10,18 @@ import org.jdom2.Document;
 import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
+/**
+ * Class is responsible for handling of the adjust view and the adjustment of the item stock.
+ */
+
 @ManagedBean
 public class AdjustController {
-	public AdjustController() {
-		this.shopItem = new ShopItem();
-	}
-	
-	private ShopItem shopItem;
-	
-	public ShopItem getShopItem() {
-		return shopItem;
-	}
-
-	public void setShopItem(ShopItem shopItem) {
-		this.shopItem = shopItem;
-	}
-	
 	@ManagedProperty(value="#{overViewController}") 
 	private OverViewController overViewController;
+	private ShopItem shopItem;
 	
-	public OverViewController getOverViewController() {
-		return overViewController;
-	}
-	
-	public void setOverViewController(OverViewController overViewController) {
-		this.overViewController = overViewController;
+	public AdjustController() {
+		this.shopItem = new ShopItem();
 	}
 	
 	public String adjustItemStock() throws Exception {
@@ -47,5 +34,21 @@ public class AdjustController {
 		overViewController.updateItems();
 		
 		return "overview?faces-redirect=true";
+	}
+	
+	public ShopItem getShopItem() {
+		return shopItem;
+	}
+
+	public void setShopItem(ShopItem shopItem) {
+		this.shopItem = shopItem;
+	}
+	
+	public OverViewController getOverViewController() {
+		return overViewController;
+	}
+	
+	public void setOverViewController(OverViewController overViewController) {
+		this.overViewController = overViewController;
 	}
 }
