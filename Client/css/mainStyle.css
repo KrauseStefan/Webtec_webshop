@@ -23,13 +23,15 @@ div {
 	border-radius:0px;
   	position: absolute;
   	top: 55px;
-  	height: 70px;
+  	height: 52px;
   	z-index: 100;
   	width: 100%;
-  	padding: 0px;
-  background: #70AD47;
-  transition: height 1s;
-  overflow:hidden;
+ 	border-top:1px solid #000000;
+	border-bottom:1px solid #000000;
+	padding: 0px;
+  	background: linear-gradient(#9ad572, #70AD47);
+  	transition: height 300ms;
+  	overflow:hidden;
 }
 
 .headder2.scrolling {
@@ -39,13 +41,15 @@ div {
 
 .headder2:hover
 {
-	height:300px;
+	height:200px;
+	max-height:100%;
 }
 
 .infoHeadder {
   width: 950px;
-  margin: 15px auto;
+  margin: 6px auto;
   background: white;
+  border:1px solid #000000;
 }
 
 .inforHeadderText {
@@ -67,9 +71,7 @@ div {
 
 .inforHeadderText>div{
 	display: -webkit-box;
- 	
 	float: right;
- 	
 	padding: 3px 0px;
 }
 
@@ -79,43 +81,37 @@ div {
 
 .pageContainer{
   width: 950px;
-  position: relative;
+  position: static;
   top: 75px;
   margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  
 }
 
 .page{
     border: thin solid black;
     min-height: 1000px;
-    width: 950px;
-}
-
-.sidebar{
-  width: 200px;
-}
-
-.leftSidebar {
-  position: relative;
-  height: 1000px;
-}
-
-.pageContainter {
-  position: relative;
-  top: 100px;
-  left: 200px;
-  height: 800px;
-  width: 600px;
-}
-
-.rightSidebar {
-  position: fixed;
-  height: 400px;
-  right: 0px;
-
+    width: 100%;
+	max-width:100%;
+	margin-left: -3px;
 }
 
 .title {
 	text-align:center;
 	font-size:36px;
 	font-weight:700;
+}
+
+.footer {
+	margin:0px;
+ 	border-top:1px solid #000000;	
+	border-radius: 0px;
+	height: auto;
+	background: linear-gradient(#9ad572, #70AD47);
+	width: 100%;
+	text-align: center;
+	color:white;
+	font-weight:bold;
 }
