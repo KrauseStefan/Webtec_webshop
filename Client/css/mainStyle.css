@@ -79,6 +79,11 @@ div {
     margin-left: 50px;
 }
 
+.inforHeadderText table{
+	border-spacing:10px 5px;
+	border-collapse:separate;
+}
+
 .pageContainer{
   width: 950px;
   position: static;
