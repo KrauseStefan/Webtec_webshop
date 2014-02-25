@@ -2,7 +2,7 @@
     <wb-module deploy-name="Admin">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Admin"/>
         <property name="java-output-path" value="/Admin/build/classes"/>
+        <property name="context-root" value="Admin"/>
     </wb-module>
 </project-modules>
