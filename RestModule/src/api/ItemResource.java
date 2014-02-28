@@ -21,7 +21,7 @@ public class ItemResource {
 	@GET 
 	@Path("items") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ShopItem> GetItems() throws Exception {
+	public Object GetItems() throws Exception {
 		List<ShopItem> items = new ArrayList<ShopItem>();
 		HttpURLConnection itemConnection = CloudCon.createConnection(CloudCon.LIST);
 		HttpURLConnection deletedConnection = CloudCon.createConnection(CloudCon.LISTDELETED);
