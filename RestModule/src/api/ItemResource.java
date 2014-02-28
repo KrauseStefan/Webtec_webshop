@@ -10,6 +10,8 @@ import au.webtech.*;
 import org.jdom2.Document;
 import org.jdom2.Element;
 
+import com.owlike.genson.Genson;
+
 import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class ItemResource {
 	@GET 
 	@Path("items") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ShopItem> GetItems() throws Exception {
+	public String GetItems() throws Exception {
 		List<ShopItem> items = new ArrayList<ShopItem>();
 		HttpURLConnection itemConnection = CloudCon.createConnection(CloudCon.LIST);
 		HttpURLConnection deletedConnection = CloudCon.createConnection(CloudCon.LISTDELETED);
@@ -50,7 +52,10 @@ public class ItemResource {
 			if (!deletedItemIDs.contains(item.getItemID()))
 				items.add(new ShopItem(element));
 		}
-		return items;
+		Genson genson = new Genson();
+		String json = genson.serialize(items);
+		
+		return json;
 		
 	}
 }
