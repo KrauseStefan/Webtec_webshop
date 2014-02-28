@@ -26,82 +26,79 @@ $(document).ready(function() {
 
 });
 
+function createTestItems (){
+	var data = [
+  {
+    "itemID": 334,
+    "itemName": "Stone Henge",
+    "itemPrice": 1337000,
+    "itemQuantity": 1
+  },{
+    "itemID": 1510,
+    "itemName": "Triumf buen",
+    "itemPrice": 10100,
+    "itemQuantity": 2
+  }
+  ]
+  
+  data = JSON.stringify(data);
+  
+  window.sessionStorage['cart'] = data;
+  
+}
+
+
 var loadShoppingBasket = function() {
-	//item = [name, cost, quantity]
-	/*var items = new Array();
-	items[0] = "Eiffeltårnet,23.000.000,2";
-	items[1] = "Rundetårn,23.000,1";
-	sessionStorage["cart"] = JSON.stringify(items);*/
 	
 	var items = JSON.parse(sessionStorage["cart"]);
-	var table = document.getElementById("shoppingCartList");
-	var total = document.getElementById("total");
-	var totalCount = 0;
+	var table = $("#shoppingCartList");
+	
+	table.empty();
 	
 	var row;
 	var cell;
+	var rows = [];
 	
-	for(var i = 0; i < items.length; i++)
-	{
-		row = table.insertRow(i);
-		row.className = "cartItem";
+	function uptateTotal(items){
+		var total = eval(items.map(function(item){return item.itemPrice * item.itemQuantity;}).join('+'))
+		$("#total").text(total)
+	}
+	
+	for(var i = 0; i < items.length; i++){
+		var item = items[i];
+		if(item.itemQuantity <= 0) continue;
+		var row = '<tr>' +
+				'<td>' + item.itemName + '</td>' +
+				'<td class="CartItemPrice">' + item.itemPrice +'</td>' +
+				'<td class="CartItemQuantity">' + item.itemQuantity +'</td>' +
+				'<td> '+
+					'<button class="cartPlusOne">+</button>'+
+					'<button class="cartMinusOne">-</button>'+
+				'</td>' +
+			'</tr>';
 		
-		var content = items[i].split(",");
+		var row = $($.parseHTML(row));
 		
-		//Add content to rows
-		for(var j = 0; j<content.length; j++)
-		{
-			cell = row.insertCell(j);
+		row.find('button').on('click', $.proxy(function(row, item, event){
+			var button = $(event.toElement);
+			if(button.hasClass('cartPlusOne'))
+				item.itemQuantity++;
+			else if(button.hasClass('cartMinusOne'))
+				item.itemQuantity--;
 			
-			if(j == 0)
-				cell.innerHTML = content[j] + ": ";
-			else if (j == 1)
-			{
-				cell.innerHTML = content[j] + " kr.";
+			window.sessionStorage['cart'] = JSON.stringify(items);
+			uptateTotal(items);
+			if(item.itemQuantity <= 0){
+				row.remove();
+				return;
+			}else{
+			row.find('.CartItemQuantity').text(item.itemQuantity);
 			}
-			
-			else
-			{
-				cell.innerHTML = content[j];
-				totalCount += parseInt(content[j-1].replace(/\./g,'')) * parseInt(content[j].replace(/\./g,''));
-			}
-		}
-		
-		//Add modify bottons
-		cell = row.insertCell(content.length);
-		cell.innerHTML = "<input type=\"button\" value=\"-\" onclick=\"function(){updateShoppingBasket(\"-\", $(this).closest(\".cartItem\"));};\"/>";
-		cell = row.insertCell(content.length+1);
-		cell.innerHTML = "<input type=\"button\" value=\"+\" class=\"incrementButton\"/>";
-		
-		$(".incrementButton").click(function(){
-			alert($(this).closest('tr').attr('id'));
-		});
-	}
-	total.removeChild(total.firstChild);
-	total.appendChild(document.createTextNode(totalCount + " kr."));
-};
 
-var incrementItem = function(){
-	updateShoppingBasket("+", $(this).closest(".row-of-data"));
-};
-
-var updateShoppingBasket = function(mode, content) {
-	var items = JSON.parse(sessionStorage["cart"]);
-	var row = $(this).closest(".cartItem");
-	var newContent = items[row.rowIndex].split(",");
-	
-	if(mode == "-")
-	{
-		newContent[2] = parseInt(newContent[2]) - 1;
+		}, this, row, item));
+		
+		table.append(row);
 	}
+	uptateTotal(items);
 	
-	else
-	{
-		newContent[2] = parseInt(newContent[2]) + 1;
-	}
-	
-	items[row.rowIndex] = newContent;
-	sessionStorage["cart"] = JSON.stringify(items);
-	
-	loadShoppingBasket();
 };
