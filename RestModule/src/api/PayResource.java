@@ -1,5 +1,5 @@
 package api;
-
+/*
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,34 +15,37 @@ import au.webtech.DocumentGenerator;
 import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 
-@Path("/service")
+//@Path("/service")
 public class PayResource {
 	
-	@POST
-	@Path("pay") 
+	//@POST
+	//@Path("pay") 
 	public void pay(String jsonArray) throws Exception {
 		Genson genson = new Genson();
 		List<ShopItem> items = new ArrayList<ShopItem>();
 		
 		items = genson.deserialize(jsonArray, new GenericType<List<ShopItem>>() {});
-		/*
+		
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
 
-		Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(shopItem.getItemID()), 
-																	shopItem.getItemName(),
-																	shopItem.getItemUrl(), 
-																	String.valueOf(shopItem.getItemPrice()), 
-																	String.valueOf(shopItem.getItemStock()), 
-									s								shopItem.getItemDescriptionElm());
 		
-		Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(this.getShopItem().getItemID()));
-		
+		for (ShopItem shopItem : items) {
+			Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(shopItem.getItemID()), 
+																	   shopItem.getItemName(),
+																	   shopItem.getItemUrl(), 
+																	   String.valueOf(shopItem.getItemPrice()), 
+																	   String.valueOf(shopItem.getItemStock()), 
+																	   shopItem.getItemDescriptionElm());
 
-		CloudCon.sendDocument(connection, doc);
+			Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(shopItem.getItemID()));
+
+			CloudCon.sendDocument(connection, doc);
+			
+		}
 		
-		overViewController.updateItems();
-		*/
+		//overViewController.updateItems();
+		
 		//return "overview?faces-redirect=true";
 	}
 	
-}
+}*/

@@ -1,5 +1,5 @@
 package api;
-
+/*
 import java.net.HttpURLConnection;
 
 import javax.ws.rs.PUT;
@@ -24,3 +24,4 @@ public class UserResource {
 		//return "overview?faces-redirect=true";
 	}
 }
+*/

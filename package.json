@@ -16,6 +16,8 @@
     "grunt-html-validation": "~0.1.13",
     "grunt-clear": "~0.2.1",
     "grunt-contrib-sass": "~0.7.1",
-    "grunt-sass": "~0.10.0"
+    "grunt-sass": "~0.10.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-connect-proxy": "git+https://github.com/drewzboto/grunt-connect-proxy.git#81631b20c537e1d07071c07299b9f040671737d2"
   }
 }

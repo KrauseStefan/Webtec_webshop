@@ -1,7 +1,21 @@
 package api;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom2.Content;
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
+import org.jdom2.Text;
+import org.jdom2.Content.CType;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
 /**
@@ -86,4 +100,8 @@ public class ShopItem {
 	public String getItemDescription() {
 		return new XMLOutputter().outputElementContentString(descElm);
 	}
+/*
+	public Element getItemDescriptionElm() {
+		return descElm;
+	}*/
 }
