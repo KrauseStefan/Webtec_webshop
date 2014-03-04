@@ -67,7 +67,10 @@ function loadShoppingBasket() {
 	var data = sessionStorage["cart"];
 	
 	if(data == undefined)
+	{
+		$("#total").text(0);
 		return;
+	}
 	
 	var items = JSON.parse(data);
 	
@@ -98,7 +101,12 @@ function loadShoppingBasket() {
 		row.find('button').on('click', $.proxy(function(row, item, event){
 			var button = $(event.toElement);
 			if(button.hasClass('cartPlusOne'))
-				item.itemQuantity++;
+				if(item.itemQuantity < item.itemStock)
+					item.itemQuantity++;
+				else
+				{
+					alert("Sorry. No more items on stock.");
+				}
 			else if(button.hasClass('cartMinusOne'))
 				item.itemQuantity--;
 			
@@ -135,7 +143,15 @@ function addToCart(item)
 		if(items[i].itemID == item.itemID)
 		{
 			var cartItem = items[i];
-			cartItem.itemQuantity += 1;
+			
+			if(cartItem.itemQuantity < item.itemStock)
+				cartItem.itemQuantity += 1;
+			
+			else
+			{
+				alert("Sorry. No more items on stock.");
+			}
+				
 			dataReady = true;
 			break;
 		}
