@@ -3,6 +3,9 @@
 $(document).ready(function() {
 	var scrolling = false;
 	
+	//createTestItems();
+	loadItems();	
+	
 	//Load shopping basket
 	loadShoppingBasket();
 	
@@ -102,3 +105,20 @@ var loadShoppingBasket = function() {
 	uptateTotal(items);
 	
 };
+
+var loadItems = function() {
+	var url = 
+	
+	$.ajaxSetup({url:"http://localhost:8260/rest/service/items", type:"GET", success:function() {
+    		alert( "success" );
+		},
+		error:function() {
+			alert("Error!");
+		},
+		complete:function() {
+			alert("Complete");
+		}
+  	});
+  
+  	$.ajax();
+}

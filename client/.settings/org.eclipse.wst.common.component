@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="client">
-        <wb-resource deploy-path="/" source-path="/WebContent"/>
-        <property name="context-root" value="client"/>
+    <wb-module deploy-name="Client">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="Client"/>
+        <property name="java-output-path" value="/Client/build/classes"/>
     </wb-module>
 </project-modules>
