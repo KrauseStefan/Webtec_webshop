@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var scrolling = false;
 	
 	//createTestItems();
-	loadItems();	
+	$.getJSON('/rest/items', updateItemTable);
 	
 	//Load shopping basket
 	loadShoppingBasket();
@@ -51,9 +51,12 @@ function createTestItems (){
 }
 
 
-var loadShoppingBasket = function() {
+function loadShoppingBasket() {
+	var data = sessionStorage["cart"];
+	if(data == undefined)
+		return;
 	
-	var items = JSON.parse(sessionStorage["cart"]);
+	var items = JSON.parse(data);
 	var table = $("#shoppingCartList");
 	
 	table.empty();
@@ -106,19 +109,19 @@ var loadShoppingBasket = function() {
 	
 };
 
-var loadItems = function() {
-	var url = 
+function updateItemTable(data){
+	var table = $('#itemsTable');
 	
-	$.ajaxSetup({url:"http://localhost:8260/rest/service/items", type:"GET", success:function() {
-    		alert( "success" );
-		},
-		error:function() {
-			alert("Error!");
-		},
-		complete:function() {
-			alert("Complete");
-		}
-  	});
-  
-  	$.ajax();
+	for(var i = 0; i < data.length; i++){
+		var d = data[i];
+		var row = "<tr>" + 
+			"<td>" +
+				d.itemName +
+			"</td>" +
+		"</tr>";
+		
+		table.append($(row));
+	}
+	
 }
+
