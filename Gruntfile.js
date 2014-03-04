@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 				options: {
 					port: 80,
 					hostname: '0.0.0.0',
-					base: '.',
+					base: ['./client/WebContent'],
 					keepalive: true,
 					middleware: function(connect, options) {
 						var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
@@ -48,8 +48,8 @@ module.exports = function(grunt) {
 							proxy,
 							// rewriteRulesSnippet,
 							//connect.favicon('images/favicon.ico'),
-							connect.static(options.base),
-							connect.directory(options.base)
+							connect.static(options.base[0]),
+							connect.directory(options.base[0])
 						];
 					}
 				},
