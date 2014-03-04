@@ -37,7 +37,6 @@ public class DocumentGenerator {
 		return _itemDoc;	
 	}	
 	
-	
 	public static Document loginDocument(String customerName, String customerPass){
 		Element createItem = new Element("login", nsX);
 		Document doc = new Document(createItem);
@@ -105,6 +104,17 @@ public class DocumentGenerator {
 		item.addContent((new Element("itemPrice", nsX)).setText(price));
 		item.addContent((new Element("itemStock", nsX)).setText(stock));
 		item.addContent(description.clone());
+		
+		return new Document(item);
+	}
+	
+	public static Document sellItemDocument(String shopKey, String saleAmount, String itemID, String customerID){
+		Element item = new Element("item", nsX);
+						
+		item.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		item.addContent((new Element("saleAmount", nsX)).setText(saleAmount));
+		item.addContent((new Element("itemID", nsX)).setText(itemID));
+		item.addContent((new Element("customerID", nsX)).setText(customerID));
 		
 		return new Document(item);
 	}

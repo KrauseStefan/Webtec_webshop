@@ -25,22 +25,17 @@ public class PayResource {
 	@Consumes("application/json")
 	public void pay(String jsonArray) throws Exception {
 		Genson genson = new Genson();
-		List<ShopItem> items = new ArrayList<ShopItem>();
+		List<SellItems> items = new ArrayList<SellItems>();
 		
-		items = genson.deserialize(jsonArray, new GenericType<List<ShopItem>>() {});
+		items = genson.deserialize(jsonArray, new GenericType<List<SellItems>>() {});
 		
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
-
 		
-		for (ShopItem shopItem : items) {
-			Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(shopItem.getItemID()), 
-																	   shopItem.getItemName(),
-																	   shopItem.getItemUrl(), 
-																	   String.valueOf(shopItem.getItemPrice()), 
-																	   String.valueOf(shopItem.getItemStock()), 
-																	   shopItem.itemDescriptionElm());
-
-			Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(shopItem.getItemID()));
+		for (SellItems sellItems : items) {
+			Document doc = DocumentGenerator.sellItemDocument(String.valueOf(sellItems.getItemID()), 
+					String.valueOf(sellItems.getCustomerID()),
+					String.valueOf(sellItems.getSaleAmount()), 
+					String.valueOf(sellItems.getShopKey()));
 
 			CloudCon.sendDocument(connection, doc);
 			
