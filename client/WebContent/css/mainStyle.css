@@ -125,3 +125,11 @@ div {
 	height: 100px;
 	width: 100px;
 }
+
+.itemsListTable td{
+	padding-left: 50px;
+}
+
+.shoppingCartList {
+	overflow: auto;
+}

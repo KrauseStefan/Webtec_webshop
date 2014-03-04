@@ -61,14 +61,15 @@ function createTestItems (){
 
 
 function loadShoppingBasket() {
+	var table = $("#shoppingCartList");
+	table.empty();
+	
 	var data = sessionStorage["cart"];
+	
 	if(data == undefined)
 		return;
 	
 	var items = JSON.parse(data);
-	var table = $("#shoppingCartList");
-	
-	table.empty();
 	
 	var row;
 	var cell;
