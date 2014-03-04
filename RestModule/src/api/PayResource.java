@@ -29,7 +29,7 @@ public class PayResource {
 		
 		items = genson.deserialize(jsonArray, new GenericType<List<SellItems>>() {});
 		
-		HttpURLConnection connection = CloudCon.createConnection(CloudCon.MODIFY);
+		HttpURLConnection connection = CloudCon.createConnection(CloudCon.SELL);
 		
 		for (SellItems sellItems : items) {
 			Document doc = DocumentGenerator.sellItemDocument(String.valueOf(sellItems.getItemID()), 

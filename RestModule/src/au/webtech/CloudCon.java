@@ -16,6 +16,7 @@ import org.jdom2.output.XMLOutputter;
 public class CloudCon {
 	private final static String baseUrl = "http://services.brics.dk/java4/cloud";
 	private final static String modifyUrl = "/modifyItem";
+	private final static String sellUrl = "/sellItems";
 	private final static String createUrl = "/createItem";
 	private final static String adjustUrl = "/adjustItemStock";
 	private final static String deleteUrl = "/deleteItem";
@@ -28,6 +29,7 @@ public class CloudCon {
 	public final static int LIST = 3;
 	public final static int DELETE = 4;
 	public final static int LISTDELETED = 5;
+	public final static int SELL = 6;
 	
 	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{		
 		DataOutputStream stream = new DataOutputStream(con.getOutputStream());
@@ -82,6 +84,9 @@ public class CloudCon {
 			break;
 		case LISTDELETED:
 			url = url + listDeletedUrl;
+			break;
+		case SELL:
+			url = url + sellUrl;
 			break;
 		default:
 			break;
