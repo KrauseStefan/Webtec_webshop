@@ -120,3 +120,8 @@ div {
 	color:white;
 	font-weight:bold;
 }
+
+.mediumImage {
+	height: 100px;
+	width: 100px;
+}
