@@ -1,5 +1,5 @@
 package api;
-
+/*
 import java.net.HttpURLConnection;
 
 import javax.ws.rs.PUT;
@@ -10,11 +10,11 @@ import org.jdom2.Document;
 import au.webtech.CloudCon;
 import au.webtech.DocumentGenerator;
 
-@Path("/service")
+//@Path("/service")
 public class UserResource {
 
-	@PUT
-	@Path("createuser") 
+	//@PUT
+	//@Path("createuser") 
 	public void CreateUser(String userName, String password) throws Exception {
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.CREATE);
 		Document doc = DocumentGenerator.createCustomerDocument(userName, password);
@@ -24,3 +24,4 @@ public class UserResource {
 		//return "overview?faces-redirect=true";
 	}
 }
+*/

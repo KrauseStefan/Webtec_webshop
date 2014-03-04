@@ -17,11 +17,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-@Path("/service")
+@Path("/items")
 public class ItemResource {
 
 	@GET 
-	@Path("items") 
 	@Produces(MediaType.APPLICATION_JSON)
 	public String GetItems() throws Exception {
 		List<ShopItem> items = new ArrayList<ShopItem>();
