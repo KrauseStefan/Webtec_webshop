@@ -100,8 +100,8 @@ public class ShopItem {
 	public String getItemDescription() {
 		return new XMLOutputter().outputElementContentString(descElm);
 	}
-/*
-	public Element getItemDescriptionElm() {
+
+	public Element itemDescriptionElm() {
 		return descElm;
-	}*/
+	}
 }

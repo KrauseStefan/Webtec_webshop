@@ -1,11 +1,14 @@
 package api;
-/*
+
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 
 import org.jdom2.Document;
 
@@ -15,11 +18,11 @@ import au.webtech.DocumentGenerator;
 import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 
-//@Path("/service")
+@Path("/pay") 
 public class PayResource {
 	
-	//@POST
-	//@Path("pay") 
+	@POST 
+	@Consumes("application/json")
 	public void pay(String jsonArray) throws Exception {
 		Genson genson = new Genson();
 		List<ShopItem> items = new ArrayList<ShopItem>();
@@ -35,7 +38,7 @@ public class PayResource {
 																	   shopItem.getItemUrl(), 
 																	   String.valueOf(shopItem.getItemPrice()), 
 																	   String.valueOf(shopItem.getItemStock()), 
-																	   shopItem.getItemDescriptionElm());
+																	   shopItem.itemDescriptionElm());
 
 			Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(shopItem.getItemID()));
 
@@ -47,5 +50,4 @@ public class PayResource {
 		
 		//return "overview?faces-redirect=true";
 	}
-	
-}*/
+}
