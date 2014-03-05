@@ -35,16 +35,28 @@ $(document).ready(function() {
 	});
 
 	loginDialogElm.find('#btnUserLogin').on('click', function(event){	
+		var params = {
+			username: loginDialogElm.find('#inpUserName').val(),
+			password: loginDialogElm.find('#inpPassword').val()
+		}
+		
+		if(!params.username || !params.password){
+			return;
+		}
+		
+		params = $.param(params);
+	
 		$.ajax({
 			type: "POST",
-			url: "some.php",
-			data: { 
-				name: "John", 
-				location: "Boston" 
-			}
+			url: "/rest/login?" + params
 		})
-		.done(function( msg ) {
-			alert( "Data Saved: " + msg );
+		.done(function( data ) {
+			if( data == true){
+				loginDialogElm.hide();
+				alert("Sucessfully loged in");				
+			}
+			else
+				alert("Error logging in");
 		});	
 	});
 
