@@ -5,8 +5,10 @@
     <title>Webshop - With awsome products</title>
     <link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
     <link href="./css/mainStyle.css" rel="stylesheet">
+	
     <script src="./js/jquery-2.1.0.js" type="text/javascript"></script>
     <script src="./js/wunderShop.js" type="text/javascript"></script>
+    <script src="./js/login.js" type="text/javascript"></script>
 	<script src="./js/payment.js" type="text/javascript"></script>
 </head>
 <body>
@@ -21,7 +23,7 @@
             	
                 <div>
                 	<span>Shoping Basket: </span><span id="total">0 kr.</span>
-                	<a href="#">Login</a>
+                	<a id="lnkUserLogin" href="#">Login</a>
             	</div>
         	</div>
         	<div class="inforHeadderText">
@@ -45,5 +47,25 @@
     <div class="footer">
     	<p>hej</p>
     </div>
+	
+	
+	<!--  login dialogbox -->
+	<div id="loginDialog">
+		<div id="backdrop"></div>
+		<div id="loginform">
+			<h1>Login</h1>
+			<br>
+
+			<p>Username:</p>
+			<input id="inpUserName" type="text">
+
+			<p>Password:</p>
+			<input id="inpPassword" type="password">
+
+			<button id="btnCreateUser">Create user</button>
+			<button id="btnUserLogin">login</button>
+		</div>
+	</div>
+	
 </body>
 </html>
