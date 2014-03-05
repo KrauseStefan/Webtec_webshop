@@ -79,19 +79,12 @@ public class PayResource {
 		for (SellItems sellItem : sellItems) {
 			for(ShopItem item : items) {
 				if(item.getItemID() == sellItem.getItemID()) {
-					Document modifiedDocument = DocumentGenerator.itemDocument(String.valueOf(item.getItemID()), 
-							item.getItemName(),
-							item.getItemUrl(), 
-							String.valueOf(item.getItemPrice()), 
-							String.valueOf((item.getItemStock() - sellItem.getSaleAmount())), 
-							item.itemDescriptionElm());
+					HttpURLConnection adjust = CloudCon.createConnection(CloudCon.ADJUST);
+					Document doc = DocumentGenerator.adjustItemStockDocument(String.valueOf(item.getItemID()),String.valueOf((-sellItem.getSaleAmount())));
 
-					String xmlstrong = new XMLOutputter().outputString(modifiedDocument);
+					String xmlstring = new XMLOutputter().outputString(doc);
 					
-					HttpURLConnection modify = CloudCon.createConnection(CloudCon.MODIFY);
-					Document doc = DocumentGenerator.modifyItemDocuemnt(modifiedDocument, String.valueOf(item.getItemID()));
-					
-					int errorCode = CloudCon.sendDocument(modify, doc);
+					int errorCode = CloudCon.sendDocument(adjust, doc);
 					
 					String shis = "";
 				}
