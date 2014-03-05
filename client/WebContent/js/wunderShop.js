@@ -149,9 +149,10 @@ function addToCart(item)
 			
 			else
 			{
-				dataReady = true;
 				alert("Sorry. No more items on stock.");
 			}
+			
+			dataReady = true;
 				
 			break;
 		}
@@ -161,10 +162,6 @@ function addToCart(item)
 	{
 		item.itemQuantity = 1;
 		items.push(item);
-	}
-	else
-	{
-		alert("Sorry. No more items on stock.");
 	}
 	
 	window.sessionStorage['cart'] = JSON.stringify(items);
