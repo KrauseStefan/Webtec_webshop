@@ -142,22 +142,23 @@ function addToCart(item)
 	{
 		if(items[i].itemID == item.itemID)
 		{
-			var cartItem = items[i];
+	 		var cartItem = items[i];
 			
-			if(cartItem.itemQuantity < item.itemStock && cartItem.itemStock != 0)
+			if(cartItem.itemQuantity < item.itemStock)
 				cartItem.itemQuantity += 1;
 			
 			else
 			{
 				alert("Sorry. No more items on stock.");
 			}
-				
+			
 			dataReady = true;
+				
 			break;
 		}
 	}
 	
-	if(!dataReady)
+	if(!dataReady && item.itemStock > 0)
 	{
 		item.itemQuantity = 1;
 		items.push(item);
@@ -169,6 +170,7 @@ function addToCart(item)
 
 function updateItemTable(data){
 	var table = $('#itemsTable');
+	table.empty();
 	
 	for(var i = 0; i < data.length; i++){
 		var d = data[i];
