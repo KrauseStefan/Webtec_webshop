@@ -95,6 +95,7 @@ public class CloudCon {
 			break;
 		case CREATE_CUSTOMER:
 			url = url + createCustomerUrl;
+			break;
 		case SELL:
 			url = url + sellUrl;
 			break;

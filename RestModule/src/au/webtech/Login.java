@@ -1,7 +1,7 @@
 package au.webtech;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
 
 import java.io.Serializable;
 
@@ -9,8 +9,8 @@ import java.io.Serializable;
  * Class is responsible for login and logout.
  */
 
-@ManagedBean
-@SessionScoped
+//@ManagedBean
+//@SessionScoped
 public class Login implements Serializable {
 	private static final long serialVersionUID = -7318774474932321476L;
 
