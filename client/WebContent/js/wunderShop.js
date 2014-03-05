@@ -180,7 +180,7 @@ function updateItemTable(data){
 			'<td>' +
 				d.itemName +
 				'<br />' +
-				d.itemDescription + 
+				d.itemDescriptionHTML + 
 			'</td>' +
 			
 			'<td>' +
