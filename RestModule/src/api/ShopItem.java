@@ -101,7 +101,7 @@ public class ShopItem {
 		return new XMLOutputter().outputElementContentString(descElm);
 	}
 	
-	public String getItemDescription(boolean formatDescription) {
+	public String getItemDescriptionHTML() {
 		return getFormattedDocument();
 	}
 

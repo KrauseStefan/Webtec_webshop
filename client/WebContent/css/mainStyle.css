@@ -135,6 +135,11 @@ div {
 
 .itemsListTable td{
 	padding-right: 5px;
+	vertical-align: top;
+}
+
+.itemsListTable li{
+	margin-left:20px;
 }
 
 #backdrop {
