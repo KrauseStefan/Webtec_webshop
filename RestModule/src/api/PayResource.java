@@ -37,8 +37,8 @@ public class PayResource {
 					String.valueOf(sellItems.getSaleAmount()), 
 					String.valueOf(sellItems.getShopKey()));
 
+			connection = CloudCon.createConnection(CloudCon.SELL);
 			CloudCon.sendDocument(connection, doc);
-			
 		}
 		
 		//overViewController.updateItems();

@@ -100,8 +100,60 @@ public class ShopItem {
 	public String getItemDescription() {
 		return new XMLOutputter().outputElementContentString(descElm);
 	}
+	
+	public String getItemDescription(boolean formatDescription) {
+		return getFormattedDocument();
+	}
 
 	public Element itemDescriptionElm() {
 		return descElm;
+	}
+	
+	private String parseXmlToHtml(List<Content> docElements) {
+		String html = "";
+		Iterator<Content> li = docElements.listIterator();
+		while (li.hasNext()) {
+			Content content = li.next();
+			CType type = content.getCType();
+			if (type == CType.Element) {
+				Element element = (Element) content;
+				if (element.getName().equals("bold"))
+					html += "<b>";
+				else if (element.getName().equals("italics"))
+					html += "<i>";
+				else if (element.getName().equals("list"))
+					html += "<ul>";
+				else if (element.getName().equals("item")){
+					html = html.trim();
+					html += "<li>";
+				}
+
+				html += parseXmlToHtml(element.getContent()).trim();
+
+				if (element.getName().equals("bold"))
+					html += "</b>";
+				else if (element.getName().equals("italics"))
+					html += "</i>";
+				else if (element.getName().equals("list"))
+					html += "</ul>";
+				else if (element.getName().equals("item"))
+					html += "</li>";
+
+			} else if (type == CType.Text) {
+				Text text = (Text) content;
+				String str = text.getText();
+				html += str;
+			}
+		}
+		return html;
+	}
+
+	public String getFormattedDocument() {
+
+		List<Content> docElements = descElm.getChild("document", ns)
+				.getContent();
+		String html = parseXmlToHtml(docElements).trim();
+		html = html.replaceAll("\n", "<br>");
+		return html;
 	}
 }
