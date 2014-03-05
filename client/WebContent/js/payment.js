@@ -15,9 +15,7 @@ function pay()
 	for(var i = 0; i < items.length; i++)
 	{
 		var sellItem = {
-			shopKey: 194,
 			itemID: items[i].itemID,
-			customerID: 381,
 			saleAmount: items[i].itemQuantity
 		};
 		
@@ -30,11 +28,16 @@ function pay()
 		contentType: "application/json",
 		data: JSON.stringify(sellItems)
 	})
-  	.done(function( msg ) {
+  	.done(function( isLoggedin ) {
+		if(!isLoggedin){
+			alert('You are not logged in please do so.')
+			return;
+		}
+		
 		sessionStorage.removeItem("cart");
 		loadShoppingBasket();
 		$.getJSON('/rest/items', updateItemTable);
-    	alert("Payment completed");
+//    	alert("Payment completed");
   	})
 	.fail(function( jqXHR, textStatus ) {
   		alert( "Request failed: " + textStatus );

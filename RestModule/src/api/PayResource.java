@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -24,9 +26,29 @@ import com.owlike.genson.Genson;
 @Path("/pay") 
 public class PayResource {
 	
+	@Context HttpServletRequest session;
+	
+	public final static int SHOP_ID = 194;
+	
+	private int getUserID(){
+		
+		HttpSession hs = session.getSession();
+		
+		Object id = hs.getAttribute(LoginResource.USER_ID);
+		if(id != null)
+			return (int) id;
+		return 0;
+	}
+	
 	@POST 
 	@Consumes("application/json")
-	public void pay(String jsonArray) throws Exception {
+	public boolean pay(String jsonArray) throws Exception {
+		
+		int userID = getUserID();
+		
+		if(userID == 0)
+			return false;
+		
 		Genson genson = new Genson();
 		List<SellItems> sellItems = new ArrayList<SellItems>();
 		
@@ -37,9 +59,9 @@ public class PayResource {
 		
 		for (SellItems sellItem : sellItems) {
 			Document doc = DocumentGenerator.sellItemDocument(String.valueOf(sellItem.getItemID()), 
-					String.valueOf(sellItem.getCustomerID()),
+					String.valueOf(userID),
 					String.valueOf(sellItem.getSaleAmount()), 
-					String.valueOf(sellItem.getShopKey()));
+					String.valueOf(SHOP_ID));
 
 			connection = CloudCon.createConnection(CloudCon.SELL);
 			CloudCon.sendDocument(connection, doc);
@@ -90,5 +112,6 @@ public class PayResource {
 				}
 			}
 		}
+		return true;
 	}
 }

@@ -19,7 +19,7 @@ import java.net.HttpURLConnection;
 public class LoginResource {
 	@Context HttpServletRequest session;
 	
-	final String USER_ID = "userID";
+	public static final String USER_ID = "userID";
 	
 	@POST
 	public boolean Login(@QueryParam("username") String userName, @QueryParam("password") String password) throws Exception {
@@ -38,7 +38,7 @@ public class LoginResource {
 	//		hs.setAttribute("loggedin", "sand");
 			Document response = CloudCon.receiveDocument(connection);
 			String id = DocumentGenerator.getItemValueUsingXpath(response, "//x:customerID", DocumentGenerator.getNS("x"));
-			hs.setAttribute(USER_ID, id);
+			hs.setAttribute(USER_ID, Integer.parseInt(id));
 			
 			return true;//sessionStore.createNewSessionID(userName);
 		}
