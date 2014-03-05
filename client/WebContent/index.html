@@ -9,6 +9,7 @@
     <script src="./js/jquery-2.1.0.js" type="text/javascript"></script>
     <script src="./js/wunderShop.js" type="text/javascript"></script>
     <script src="./js/login.js" type="text/javascript"></script>
+	<script src="./js/payment.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="headder">
@@ -26,12 +27,12 @@
             	</div>
         	</div>
         	<div class="inforHeadderText">
-            	<div>
+            	<div class="shoppingBasket">
               		<table id="shoppingCartList">
 					</table>
             	</div>
             	<div class="clearBoth">
-            		<button>Buy</button>   
+            		<button onclick="pay()">Buy</button>   
 				</div>
 			</div>
 		</div>
@@ -39,7 +40,7 @@
     <div class="pageContainer">
       	<div class="page">
         	<h1>Vare:</h1>
-          	<table id="itemsTable">
+          	<table class="itemsListTable" id="itemsTable">
 			</table>
       	</div>
     </div>

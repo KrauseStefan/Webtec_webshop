@@ -42,7 +42,6 @@ public class DocumentGenerator {
 		return _itemDoc;	
 	}	
 	
-	
 	public static Document loginDocument(String customerName, String customerPass){
 		Element createItem = new Element("login", nsX);
 		Document doc = new Document(createItem);
@@ -114,6 +113,17 @@ public class DocumentGenerator {
 		return new Document(item);
 	}
 	
+	public static Document sellItemDocument(String shopKey, String saleAmount, String itemID, String customerID){
+		Element item = new Element("item", nsX);
+						
+		item.addContent((new Element("shopKey", nsX)).setText(shopKey));
+		item.addContent((new Element("saleAmount", nsX)).setText(saleAmount));
+		item.addContent((new Element("itemID", nsX)).setText(itemID));
+		item.addContent((new Element("customerID", nsX)).setText(customerID));
+		
+		return new Document(item);
+	}
+
 	/**
 	 * @param d
 	 * @param exp
@@ -135,10 +145,10 @@ public class DocumentGenerator {
 	 */
 	public static String getItemValueUsingXpath(Document document, String xPathExp, Namespace ns){
 		Element element = getItemUsingXpath(document, xPathExp, ns);
-		
+
 		if(element == null)
 			return null;
-		
+	
 		return element.getTextTrim();
 	}
 

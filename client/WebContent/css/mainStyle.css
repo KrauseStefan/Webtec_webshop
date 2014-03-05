@@ -31,7 +31,7 @@ div {
 	padding: 0px;
   	background: linear-gradient(#9ad572, #70AD47);
   	transition: height 300ms;
-  	overflow:hidden;
+  	overflow: hidden;
 }
 
 .headder2.scrolling {
@@ -84,6 +84,13 @@ div {
 	border-collapse:separate;
 }
 
+.shoppingBasket {
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: 95px;
+	border: solid thin lightgray;
+}
+
 .pageContainer{
   width: 950px;
   position: static;
@@ -126,8 +133,9 @@ div {
 	width: 100px;
 }
 
-
-
+.itemsListTable td{
+	padding-right: 5px;
+}
 
 #backdrop {
 	background-color: black;
