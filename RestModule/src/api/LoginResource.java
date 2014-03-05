@@ -19,17 +19,14 @@ public class LoginResource {
 	public Boolean Login(@QueryParam("username") String userName, @QueryParam("password") String password) throws Exception {
 		HttpURLConnection connection = CloudCon.createConnection(CloudCon.LOGIN);
 		Document doc = DocumentGenerator.loginDocument(userName, password);
-
-		String docrequest = new XMLOutputter().outputString(doc);
 		
 		CloudCon.sendDocument(connection, doc);
 		
-		Document response = CloudCon.receiveDocument(connection);
+		int responseCode = connection.getResponseCode();
 		
-		String docresponse = new XMLOutputter().outputString(response);
-		
-		String e = "";
-		
-		return true;
+		if(responseCode >= 200 && responseCode < 300)
+			return true;
+
+		return false;		
 	}
 }
