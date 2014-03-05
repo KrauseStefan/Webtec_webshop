@@ -142,25 +142,29 @@ function addToCart(item)
 	{
 		if(items[i].itemID == item.itemID)
 		{
-			var cartItem = items[i];
+	 		var cartItem = items[i];
 			
-			if(cartItem.itemQuantity < item.itemStock && cartItem.itemStock != 0)
+			if(cartItem.itemQuantity < item.itemStock)
 				cartItem.itemQuantity += 1;
 			
 			else
 			{
+				dataReady = true;
 				alert("Sorry. No more items on stock.");
 			}
 				
-			dataReady = true;
 			break;
 		}
 	}
 	
-	if(!dataReady)
+	if(!dataReady && item.itemStock > 0)
 	{
 		item.itemQuantity = 1;
 		items.push(item);
+	}
+	else
+	{
+		alert("Sorry. No more items on stock.");
 	}
 	
 	window.sessionStorage['cart'] = JSON.stringify(items);
