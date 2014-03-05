@@ -16,6 +16,11 @@ public class DocumentGenerator {
 	private final static String shopKey = "5247EFB974D2D4D06403F61B";
 	private final static Namespace nsX = Namespace.getNamespace("x", namespaceUrl);
 	
+	public static Namespace getNS(String prefix){
+		
+		return Namespace.getNamespace(prefix, namespaceUrl);
+	}
+	
 	public static Document createItemDocuemnt(String itemName){
 		Element createItem = new Element("createItem", nsX);
 		Document doc = new Document(createItem);
@@ -109,6 +114,12 @@ public class DocumentGenerator {
 		return new Document(item);
 	}
 	
+	/**
+	 * @param d
+	 * @param exp
+	 * @param ns
+	 * @return Element
+	 */
 	public  static Element getItemUsingXpath(Document d, String exp, Namespace ns){
 		XPathFactory factory = XPathFactory.instance();
 		XPathExpression<Element> expression = factory.compile(exp, Filters.element(), null, ns);
@@ -117,21 +128,17 @@ public class DocumentGenerator {
 	}	
 	
 	/**
-	 * Hacked version that assumes no namespace and then adds our namespace.
-	 * 
 	 * @param document
 	 * @param xPathExp
-	 * @return
+	 * @param ns
+	 * @return String
 	 */
-	public static String getItemValueUsingXpath(Document document, String xPathExp){
-		xPathExp.replaceAll("\\/", "/x:");
-		xPathExp.replaceAll("\\//", "//x:");
-
-		return getItemValueUsingXpath(document, xPathExp, nsX);		
-	}
-	
 	public static String getItemValueUsingXpath(Document document, String xPathExp, Namespace ns){
 		Element element = getItemUsingXpath(document, xPathExp, ns);
+		
+		if(element == null)
+			return null;
+		
 		return element.getTextTrim();
 	}
 

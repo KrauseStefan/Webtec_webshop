@@ -125,3 +125,36 @@ div {
 	height: 100px;
 	width: 100px;
 }
+
+
+
+
+#backdrop {
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	z-index: 101;
+	opacity: 0.7;
+	position: fixed;
+}
+
+#loginDialog {
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;	
+	display: none;
+}
+
+#loginform {
+	height: 145px;
+	width: 160px;
+	margin: 0 auto;
+	background-color: white;
+	border: thin solid black;
+	z-index: 102;
+	top: 50px;	
+	position: relative;
+}
