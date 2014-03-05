@@ -144,7 +144,7 @@ function addToCart(item)
 		{
 			var cartItem = items[i];
 			
-			if(cartItem.itemQuantity < item.itemStock)
+			if(cartItem.itemQuantity < item.itemStock && cartItem.itemStock != 0)
 				cartItem.itemQuantity += 1;
 			
 			else
