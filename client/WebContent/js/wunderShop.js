@@ -170,6 +170,7 @@ function addToCart(item)
 
 function updateItemTable(data){
 	var table = $('#itemsTable');
+	table.empty();
 	
 	for(var i = 0; i < data.length; i++){
 		var d = data[i];

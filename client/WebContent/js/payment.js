@@ -33,6 +33,7 @@ function pay()
   	.done(function( msg ) {
 		sessionStorage.removeItem("cart");
 		loadShoppingBasket();
+		$.getJSON('/rest/items', updateItemTable);
     	alert("Payment completed");
   	})
 	.fail(function( jqXHR, textStatus ) {
