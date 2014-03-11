@@ -28,7 +28,10 @@ $(document).ready(function() {
 			eval("data = " + msg);
 			
 			if(data.successful)
+			{
 				loginDialogElm.hide();
+			}
+			
 			alert(data.message);
 		});	
 		
@@ -53,7 +56,8 @@ $(document).ready(function() {
 		.done(function( data ) {
 			if( data == true){
 				loginDialogElm.hide();
-				alert("Sucessfully loged in");				
+				alert("Sucessfully loged in");
+				startSupport();
 			}
 			else
 				alert("Error logging in");
