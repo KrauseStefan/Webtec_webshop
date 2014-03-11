@@ -60,58 +60,12 @@ public class PayResource {
 		for (SellItems sellItem : sellItems) {
 			Document doc = DocumentGenerator.sellItemDocument(String.valueOf(sellItem.getItemID()), 
 					String.valueOf(userID),
-					String.valueOf(sellItem.getSaleAmount()), 
-					String.valueOf(SHOP_ID));
+					String.valueOf(sellItem.getSaleAmount()));
 
 			connection = CloudCon.createConnection(CloudCon.SELL);
 			CloudCon.sendDocument(connection, doc);
 		}
 		
-		//load items
-		List<ShopItem> items = new ArrayList<ShopItem>();
-		HttpURLConnection itemConnection = CloudCon.createConnection(CloudCon.LIST);
-		HttpURLConnection deletedConnection = CloudCon.createConnection(CloudCon.LISTDELETED);
-		Document itemDoc = CloudCon.receiveDocument(itemConnection);
-		Document deletedDoc = CloudCon.receiveDocument(deletedConnection);
-		
-		List<Long> deletedItemIDs = new ArrayList<Long>();
-		
-		Iterator<Element> i = deletedDoc.getRootElement().getChildren().iterator();
-
-		while(i.hasNext()) {			
-			Element element = i.next();
-			
-			deletedItemIDs.add(Long.parseLong(element.getText()));
-		}
-		
-		items.clear();
-	
-		Iterator<Element> it = itemDoc.getRootElement().getChildren().iterator();
-
-		
-		while(it.hasNext()) {			
-			Element element = it.next();
-			ShopItem item = new ShopItem(element);
-			
-			if (!deletedItemIDs.contains(item.getItemID()))
-				items.add(new ShopItem(element));
-		}
-		
-		//modify according to sell
-		for (SellItems sellItem : sellItems) {
-			for(ShopItem item : items) {
-				if(item.getItemID() == sellItem.getItemID()) {
-					HttpURLConnection adjust = CloudCon.createConnection(CloudCon.ADJUST);
-					Document doc = DocumentGenerator.adjustItemStockDocument(String.valueOf(item.getItemID()),String.valueOf((-sellItem.getSaleAmount())));
-
-					String xmlstring = new XMLOutputter().outputString(doc);
-					
-					int errorCode = CloudCon.sendDocument(adjust, doc);
-					
-					String shis = "";
-				}
-			}
-		}
 		return true;
 	}
 }

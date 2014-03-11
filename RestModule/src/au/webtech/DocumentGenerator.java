@@ -113,15 +113,15 @@ public class DocumentGenerator {
 		return new Document(item);
 	}
 	
-	public static Document sellItemDocument(String shopKey, String saleAmount, String itemID, String customerID){
-		Element item = new Element("item", nsX);
+	public static Document sellItemDocument(String itemID, String customerID, String saleAmount){
+		Element sellItems = new Element("sellItems", nsX);
 						
-		item.addContent((new Element("shopKey", nsX)).setText(shopKey));
-		item.addContent((new Element("saleAmount", nsX)).setText(saleAmount));
-		item.addContent((new Element("itemID", nsX)).setText(itemID));
-		item.addContent((new Element("customerID", nsX)).setText(customerID));
+		sellItems.addContent((new Element("shopKey", nsX)).setText(shopKey))
+			.addContent((new Element("itemID", nsX)).setText(itemID))
+			.addContent((new Element("customerID", nsX)).setText(customerID))
+			.addContent((new Element("saleAmount", nsX)).setText(saleAmount));
 		
-		return new Document(item);
+		return new Document(sellItems);
 	}
 
 	/**
