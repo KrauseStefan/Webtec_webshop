@@ -23,8 +23,7 @@ public class CloudCon {
 	private final static String loginUrl = "/login";
 	private final static String listUrl = "/listItems?shopID=194";
 	private final static String listDeletedUrl = "/listDeletedItemIDs?shopID=194";
-
-	
+	private final static String listSoldUrl = "/listShopSales?shopKey=5247EFB974D2D4D06403F61B";
 	private final static String createCustomerUrl = "/createCustomer";
 
 	public final static int MODIFY = 0;
@@ -35,9 +34,8 @@ public class CloudCon {
 	public final static int LISTDELETED = 5;
 	public final static int SELL = 6;
 	public final static int LOGIN = 7;
-	
-	
 	public final static int CREATE_CUSTOMER = 8;
+	public final static int LIST_SOLD = 9;	
 	
 	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{		
 		DataOutputStream stream = new DataOutputStream(con.getOutputStream());
@@ -102,6 +100,9 @@ public class CloudCon {
 		case LOGIN:
 			url = url + loginUrl;
 			break;
+		case LIST_SOLD:
+			url += listSoldUrl;
+			break;
 		default:
 			break;
 		}
@@ -110,7 +111,7 @@ public class CloudCon {
 		connection.setDoOutput(true);
 		connection.setRequestProperty("Content-type", "text/xml");
 		
-		if (mode == LIST || mode == LISTDELETED) {
+		if (mode == LIST || mode == LISTDELETED || mode == LIST_SOLD) {
 			connection.setRequestMethod("GET");
 		}
 		else {

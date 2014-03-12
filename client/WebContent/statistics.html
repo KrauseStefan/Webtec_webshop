@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <title>Webshop - With awsome products</title>
+    <link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
+    <link href="./css/mainStyle.css" rel="stylesheet">
+	
+    <script src="./js/jquery-2.1.0.js" type="text/javascript"></script>
+	<script src="./js/jquery.flot.js" type="text/javascript"></script>
+	<script src="./js/jquery.flot.categories.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+	$(function() {
+		
+		var flotConfig = {
+			series: {
+//       		lines: { show: true },
+//        		points: { show: true },
+				bars: {show: true, barWidth: 0.9, align: "center"}
+    		},
+			xaxis: {
+				mode: "categories"
+			},
+			yaxes: [			
+				{ 
+					position: "left", 
+					tickDecimals: 0
+				},
+				{ 
+					position: "right", 
+					tickFormatter : function(val){
+						return val + " kr."
+					},
+					max: 20000
+				}
+			]
+			
+			
+		}
+		
+		function updateFlotPlot(data){
+			var dataMap = {};
+			var itemsSold = {
+				label: "itemsSold left side",
+				data: [],
+				yaxis: 1
+			};
+			
+			var itemsSoldValue = {
+				label: "itemsSoldValue(kr.) right side",
+				data: [],
+				yaxis: 2
+			};
+
+			for(var i = 0; i < data.length; i++){
+				if(dataMap[data[i].itemID]){
+					dataMap[data[i].itemID].saleAmount += data[i].saleAmount;
+					dataMap[data[i].itemID].saleItemPrice += data[i].saleAmount * data[i].saleItemPrice;
+					
+				}else{
+					dataMap[data[i].itemID] = {
+						saleAmount: data[i].saleAmount,
+						saleItemPrice: data[i].saleAmount * data[i].saleItemPrice
+					}
+				}
+			}
+			
+			for(var i in dataMap){
+				itemsSold.data.push(["ItemID: " + i, dataMap[i].saleAmount]);
+				itemsSoldValue.data.push(["ItemID: " + i, dataMap[i].saleItemPrice]);
+			}
+			
+//			for(var i = 0; i < data.length; i++){
+//				itemsSold.data.push(["ItemID: " + data[i].itemID, data[i].saleAmount]);
+//				itemsSoldValue.data.push(["ItemID: " + data[i].itemID, data[i].saleItemPrice * data[i].saleAmount]);
+//			}
+			
+				
+			$.plot("#chart", [itemsSold, itemsSoldValue], flotConfig);
+			
+		}
+
+		$.ajax({
+			type: "GET",
+			url: "/rest/sales"
+		}).then(updateFlotPlot)
+
+	});
+
+	</script>
+</head>
+<body>
+<h1 style="margin: 20px">Statistics</h1>
+<div id="chart" style="width: 1000px; height: 800px; margin: 20px"></div>
+
+</body>
+</html>
