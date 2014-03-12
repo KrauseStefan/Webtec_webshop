@@ -173,13 +173,34 @@ div {
 }
 
 .supportArea {
-	background-color: green;
+	background: linear-gradient(#72a5d5, #4781ad);
 	border: thin solid black;
 	position: fixed;
 	bottom: 0px;
-	right: 20px;
+	right: 0px;
 	height:auto;
-	max-height:70%;
-	max-width:400px;
+	width:230px;
+	max-height:500px;
+	max-width:100%;
 	display: none;
+	border-width:2px;
+	border-radius: 10px 0px 0px 0px;
+}
+
+.supportArea #chatMessages {
+	max-width: 100%;
+	max-height:300px;
+	overflow: auto;
+	margin-bottom: 25px;
+	margin-top:0px;
+	word-wrap:break-word; 
+}
+
+.supportArea #chatControls {
+	position: fixed;
+	bottom:0px;
+}
+
+.supportArea hr {
+	margin:2px;
 }
