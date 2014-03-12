@@ -35,6 +35,22 @@ $(document).ready(function() {
 		}
 
 	});
+	
+	var alreadyObserving = false;
+		
+	$('.headder2').on('dragenter', function(e){
+  		this.classList.add('dragover');
+		
+		if(!alreadyObserving){
+			$(document.body).one('dragenter', function(e){
+				$('.headder2').removeClass('dragover');
+				alreadyObserving = false;
+			})
+			alreadyObserving = true;
+		}
+		
+		return false;
+	});
 
 });
 
@@ -95,7 +111,7 @@ function loadShoppingBasket() {
 					'<button class="cartMinusOne">-</button>'+
 				'</td>' +
 			'</tr>';
-		
+
 		var row = $($.parseHTML(row));
 		
 		row.find('button').on('click', $.proxy(function(row, item, event){
@@ -174,39 +190,61 @@ function updateItemTable(data){
 	
 	for(var i = 0; i < data.length; i++){
 		var d = data[i];
-		var row = '<tr>' + 
-			'<td><img class="mediumImage" alt="item_image" src="' +
+
+		var row = '<tr><td>' +
+		'<div draggable="true" class="itemRow">' + 
+			'<div><img class="mediumImage" alt="item_image" src="' +
 				d.itemUrl +
-			'"/></td>' +
+			'"/></div>' +
 				
-			'<td>' +
+			'<div>' +
 				d.itemName +
 				'<br />' +
 				d.itemDescriptionHTML + 
-			'</td>' +
+			'</div>' +
 			
-			'<td>' +
+			'<div>' +
 				d.itemPrice +
-			'</td>' +
+			'</div>' +
 			
-			'<td>' +
-				d.itemStock +
-			'</td>' +
+			'<div>' +
+				d.itemStock + " left" +
+			'</div>' +
 			
-			'<td>' +
+			'<div>' +
 				'<button class="addToCart">Add</button>'+
-			'</td>' +
-		'</tr>';
+			'</div>' +
+		'</div></td></tr>';
 		
 		var row = $($.parseHTML(row));
 		var item = copyObj(data[i]);
 		
 		row.find('button.addToCart').on('click', $.proxy(function(row, item, event){
-			var button = $(event.toElement);
+			addToCart(item);
+		}, this, row, item))
+		
+		row.find('.itemRow').on('dragstart', function(e){
+			this.style.opacity = '0.4';
+		}).on('dragover', function(e){
+			if (e.preventDefault) {
+				e.preventDefault(); // Necessary. Allows us to drop.
+			}
+	
+			e.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+	
+			return false;
+		}).on('dragend', $.proxy(function(item, e){
+			this.style.opacity = '1';
+			if($('.headder2').hasClass('dragover')){
+				$('.dragover').removeClass('dragover');	
+				console.log("droped");
 				addToCart(item);
-		}, this, row, item));
+			}
+		}, null, item));
 		
 		table.append($(row));
 	}
+	
+	$('[draggable]')
 	
 }

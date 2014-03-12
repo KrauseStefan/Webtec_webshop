@@ -1,7 +1,7 @@
 * {
 }
 
-div {
+div, span{
   border-radius: 3px;
   padding: 5px;
 }
@@ -33,6 +33,11 @@ div {
   	transition: height 300ms;
   	overflow: hidden;
 }
+
+.headder2.dragover {
+  border: 2px dashed #000;
+}
+
 
 .headder2.scrolling {
   position: fixed;
@@ -203,4 +208,50 @@ div {
 
 .supportArea hr {
 	margin:2px;
+}
+
+.itemRow {
+	cursor: pointer;
+	width: 940px;
+}
+
+.itemRow>*{
+	display: inline-table;
+}
+
+.itemRow>div:nth-child(1){
+	position: absolute;
+}
+
+.itemRow>div:nth-child(2){
+	margin-left: 110px;
+	border: solid black thin;
+	width: 500px;
+	min-height: 95px;
+}
+
+.itemRow>div:nth-child(3){
+	width: 100px;
+	min-height: 95px;
+	text-align: right;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.itemRow>div:nth-child(4){
+	width: 90px;
+	min-height: 95px;
+	text-align: right;
+	margin-right: 30px;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
 }
