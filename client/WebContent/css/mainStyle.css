@@ -28,7 +28,7 @@ div, span{
   	width: 100%;
  	border-top:1px solid #000000;
 	border-bottom:1px solid #000000;
-	padding: 0px;
+	padding: 1px;
   	background: linear-gradient(#9ad572, #70AD47);
   	transition: height 300ms;
   	overflow: hidden;
@@ -36,6 +36,9 @@ div, span{
 
 .headder2.dragover {
   border: 2px dashed #000;
+/*  border-top: 2px dashed #000;
+  border-bottom: 2px dashed #000;*/
+  padding: 0;
 }
 
 
