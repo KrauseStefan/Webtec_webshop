@@ -104,6 +104,7 @@ public class ShopItem {
 		return new XMLOutputter().outputElementContentString(descElm);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setItemDescription(String itemDescription)
 			throws JDOMException, IOException, URISyntaxException {
 		StringReader is = new StringReader(itemDescription);
