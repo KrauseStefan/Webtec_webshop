@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet"/>
+    <link href="./css/mainStyle.css" rel="stylesheet" />
+	<title>Support</title>
+</head>
+<body>
+	<h1 class="title">Customer support</h1>
+	<div class="titleUnderline"></div>
+	<div class="section">
+		<h:dataTable value="#{supportController.chats}" var="chat" class="dataTable">
+			<h:column>
+		        <f:facet name="header">
+		            <h:outputText value="User ID" class="tableHeader" />
+		        </f:facet>
+		        <h:outputText value="#{chat.userID}" />
+		    </h:column>
+		    <h:column>
+		        <f:facet name="header">
+		            <h:outputText value="Message" class="tableHeader"/>
+		        </f:facet>
+		        <h:outputText value="#{chat.message}" />
+		    </h:column>
+		</h:dataTable>
+	</div>
+</body>
+</html>
