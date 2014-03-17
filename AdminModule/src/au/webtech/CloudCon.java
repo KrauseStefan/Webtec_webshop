@@ -22,6 +22,7 @@ public class CloudCon {
 	private final static String deleteUrl = "/deleteItem";
 	private final static String listUrl = "/listItems?shopID=194";
 	private final static String listDeletedUrl = "/listDeletedItemIDs?shopID=194";
+	private final static String supportUrl = "/chat";
 
 	public final static int MODIFY = 0;
 	public final static int CREATE = 1;
@@ -29,6 +30,7 @@ public class CloudCon {
 	public final static int LIST = 3;
 	public final static int DELETE = 4;
 	public final static int LISTDELETED = 5;
+	public final static int SUPPORT = 6;
 	
 	public static int sendDocument(HttpURLConnection con, Document doc) throws Exception{		
 		DataOutputStream stream = new DataOutputStream(con.getOutputStream());
