@@ -30,13 +30,24 @@ module.exports = function(grunt) {
 
 		// 	}
 		// },
+		watch: {
+			files: ['./client/WebContent/**/*'],
+			tasks: [],
+			options: {
+				livereload: true,
+				spawn: false
+
+			}
+		},
+
 		connect: {
 			server: {
 				options: {
 					port: 80,
 					hostname: '0.0.0.0',
 					base: ['./client/WebContent'],
-					keepalive: true,
+					keepalive: false,
+					livereload: false,
 					middleware: function(connect, options) {
 						var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
 						// var rewriteRulesSnippet = require('grunt-connect-rewrite/lib/utils').rewriteRequest;
@@ -77,5 +88,5 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.registerTask('default', ['configureProxies:server', 'connect']);
+	grunt.registerTask('default', ['configureProxies:server', 'connect', 'watch']);
 };

@@ -18,6 +18,7 @@ public class LoginResource {
 	@Context HttpServletRequest session;
 	
 	public static final String USER_ID = "userID";
+	public static final String USER_NAME = "userName";
 	
 	@POST
 	public boolean Login(@QueryParam("username") String userName, @QueryParam("password") String password) throws Exception {
@@ -37,6 +38,7 @@ public class LoginResource {
 			Document response = CloudCon.receiveDocument(connection);
 			String id = DocumentGenerator.getItemValueUsingXpath(response, "//x:customerID", DocumentGenerator.getNS("x"));
 			hs.setAttribute(USER_ID, Integer.parseInt(id));
+			hs.setAttribute(USER_NAME, userName);
 			
 			return true;//sessionStore.createNewSessionID(userName);
 		}

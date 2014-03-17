@@ -1,160 +1,155 @@
 package api;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-
+import com.owlike.genson.Genson;
+import com.owlike.genson.TransformationException;
 
 @Path("/chat")
-public class Chat {
+public class ChatResource {
+
+	@Context
+	HttpServletRequest session;
+
+	public static Map<Integer, Map<String, Object>> chatsUser = new HashMap<Integer, Map<String, Object>>();
+	public static Map<Integer, Map<String, Object>> chatsAdmin = new HashMap<Integer, Map<String, Object>>();
+
+	public static final String JSON_MESSAGE_ARRAY = "messages";
+
+	private static final String JSON_USERNAME = "username";
 	
-	@Context HttpServletRequest session;
-	
-	public static HashMap<Integer, List<String>> chatsUser = new HashMap<Integer, List<String>>();
-	public static HashMap<Integer, List<String>> chatsAdmin = new HashMap<Integer, List<String>>();
-	
-	//The get method for the user
+	// The get method for the user
+	@SuppressWarnings({ "unchecked", "null" })
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String receive(){
-		final int timeout = 20000;
-		final int refreshRate = 2000;
-		long timeStart = System.currentTimeMillis();
-		String message = "";
+	@Produces(MediaType.APPLICATION_JSON)
+	public String receive(@DefaultValue("false") @QueryParam("admin") boolean admin) throws TransformationException, IOException, InterruptedException {
 
-		Integer customerID = getUserID();
+		final int TIMEOUT_MS = 20000;
+		final int REFRESH_RATE_MS = 2000;
+		long timeStart = System.currentTimeMillis();
 		
-		while(System.currentTimeMillis() - timeStart < timeout && customerID != null)
-		{
-			List<String> messages = chatsUser.get(customerID);
+		String json;
+		Map<String, Object> userObj = null;
+		List<String> userMsgList = null;
+		if (!admin) {
+			if (getUserID() == 0)
+				return "{\"error\":true}";
+
+			userObj = (Map<String, Object>) chatsUser.get(getUserID());
 			
-			if(messages != null && 0 < messages.size())
-			{
-				for(String content: messages)
-				{
-					message += content + " ";
-				}
-				
-				chatsUser.clear();
-				
-				return message;
+			if(userObj == null)
+				userMsgList = (List<String>) userObj.get(JSON_MESSAGE_ARRAY);
+			else{
+				userMsgList = new LinkedList<>();
+				userObj.put(JSON_MESSAGE_ARRAY, userMsgList);
+				userObj.put(JSON_USERNAME, getUserName());
 			}
+//			if (userObj == null){
+//				chatsUser.put(getUserID(), new ArrayList<String>());
+//				userObj = chatsUser.get(getUserID());
+//			}
 			
-			sleep(refreshRate);
 		}
-		
-		return message;
+
+		while (System.currentTimeMillis() - timeStart < TIMEOUT_MS) {
+
+			if (!admin) {
+				synchronized (chatsUser) {
+					if (userMsgList.size() > 0) {
+						json = new Genson().serialize(userObj);
+						userMsgList.clear();
+						return json;
+					}
+				}
+			} else {
+				synchronized (chatsAdmin) {
+					if (chatsAdmin.size() > 0) {
+						json = new Genson().serialize(chatsAdmin);
+						chatsAdmin.clear();
+						return json;
+					}
+				}
+			}
+
+			Thread.sleep(REFRESH_RATE_MS);
+		}
+
+		return "{}";
 	}
-	
-	//The get method for the admin
-	/*@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String receiveAll(){
-		final int timeout = 20000;
-		final int refreshRate = 2000;
-		long timeStart = System.currentTimeMillis();
-		String message = "";
 
-		Integer customerID = getUserID();
-		
-		while(System.currentTimeMillis() - timeStart < timeout && customerID != null)
-		{
-			List<String> messages = chatsAdmin.get(customerID);
-			
-			if(messages != null && 0 < messages.size())
-			{
-				for(String content: messages)
-				{
-					message += content + " ";
-				}
-				
-				chatsAdmin.clear();
-				
-				return message;
-			}
-			
-			sleep(refreshRate);
-		}
-		
-		return message;
-	}*/
-	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.TEXT_PLAIN)
-	public boolean send(String message){
-		
+	public boolean send(String message, @DefaultValue("-1") @QueryParam("id") int id) {
+
 		Integer customerID = getUserID();
-		
-		if(customerID.equals(0))
-		{
-			return false;
+		if (id == -1) { // admin message
+			if (customerID.equals(0)) {
+				return false;
+			}
+			persistMessage(chatsAdmin, customerID, message);
+
+		} else { //normal user message
+			persistMessage(chatsUser, customerID, message);
 		}
-		
-		persistMessage(chatsUser, customerID, message);
-		persistMessage(chatsAdmin, customerID, message);
+
 		return true;
 	}
-	
-	private void persistMessage(HashMap<Integer, List<String>> chats, int customerID, String message)
-	{
-		if(!chats.isEmpty())
-		{
-			//If active chat session
-			if(chats.containsKey(customerID))
-			{
-				chats.get(customerID).add(message);
+
+	@SuppressWarnings("unchecked")
+	private void persistMessage(Map<Integer, Map<String, Object>> chats, int customerID, String message) {
+
+		// If active chat session
+		synchronized (chats) {
+			if (chats.containsKey(customerID)) {
+				List<String> messages = (List<String>) chats.get(customerID).get(JSON_MESSAGE_ARRAY);
+				messages.add(message);
 			}
-			
-			//else create new session
-			else
-			{
+			// else create new session
+			else {
+				Map<String, Object> userObj = new LinkedHashMap<String, Object>();				
 				List<String> list = new ArrayList<String>();
+				
 				list.add(message);
-				chats.put(customerID, list);
+				userObj.put(JSON_MESSAGE_ARRAY, list);
+				userObj.put(JSON_USERNAME, getUserName());
+				chats.put(customerID, userObj);
 			}
-		}
-		
-		else
-		{
-			chats.clear();
-			
-			List<String> list = new ArrayList<String>();
-			list.add(message);
-			chats.put(customerID, list);
 		}
 	}
-	
-	
-	
-	private int getUserID(){
-		
+
+	private int getUserID() {
+
 		HttpSession hs = session.getSession();
-		
+
 		Object id = hs.getAttribute(LoginResource.USER_ID);
-		
-		if(id != null)
+
+		if (id != null)
 			return (int) id;
-		
+
 		return 0;
 	}
 	
-	private void sleep(int milliseconds)
-	{
-		try {
-			Thread.sleep(milliseconds);
-		} 
-		
-		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private String getUserName() {
+
+		HttpSession hs = session.getSession();
+
+		String userName = (String) hs.getAttribute(LoginResource.USER_NAME);
+
+		if (userName != null)
+			return userName;
+
+		return "Chat Support";
 	}
-	
 }
