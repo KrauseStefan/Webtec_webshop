@@ -1,0 +1,228 @@
+<html>
+	<head>
+		<link href="./css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
+		<!-- <link href="./css/mainStyle.css" rel="stylesheet"> -->
+		
+		<script src="./js/jquery-2.1.0.js" type="text/javascript"></script>
+		<script src="./js/chat.js" type="text/javascript"></script>
+		<style type="text/css">
+			ul {
+				list-style-type: none;
+			}
+
+			#clientList li:nth-child(even) {
+				background: lightgray;
+				border-radius: 4px;
+			}
+
+			#clientList li:hover{
+				background: gray;
+				cursor: pointer;
+			}
+
+			#clientChat li {
+				border-radius: 4px;
+							margin: 5px;
+			}
+
+			#clientChat li.self {
+				background: lightblue;
+				margin-left: 25px;
+				text-align: right;
+			}
+
+			#clientChat li {
+				background: lightgreen;
+				width: 460px;
+			}
+
+			#clientList, #clientChat{
+				margin: 30px;
+				margin-right: 0;
+				display: inline-table;
+			}
+
+			#clientList>div>div, #clientChat>div>div {
+			}
+
+			#clientList>div, #clientChat>div {
+				display: block;
+				padding: 5px;
+				border: solid black thin;
+				height: 400px;
+			}
+			
+			#clientList {
+				width: 200px;
+			}
+			
+			#clientChat>div>div:nth-child(1){
+				height: 400px;
+			}
+			
+			#messageControl {
+				margin: 20px;
+			}
+
+			#messageControl input {
+				width: 300px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$('#messageControl>input').on('keypress', function(event) {
+					if(event.which == 13)
+						sendMessage();			
+				});
+
+				$('#messageControl>button').on('click', function(e){
+					sendMessage();
+				})
+
+				messagePullLoop();
+			});
+			
+			function updateUserListListerners(){
+				$('#clientList li').on('click', function(e){
+					var id = $(this).find('span.customerID').html();
+					currentUserID = parseInt(id);
+					updateChatWindow();
+				});
+
+			}
+			
+			function updateChatWindow(){
+				if(!currentUserID)
+					return;
+				
+				var currentChat = adminChatMessageLog[currentUserID].messages;
+				var liChatList = $('#clientChat ul').empty();
+				for(var i = 0; i < currentChat.length; i++){
+					if(currentChat[i].type == "self")
+						liChatList.append('<li class="self">' + currentChat[i].message +'</li>');				
+					else
+						liChatList.append('<li>' + currentChat[i] +'</li>');
+				}
+			}
+			
+			var currentUserID = null;
+			var adminChatMessageLog = {
+				/*{"447":{"messages":["test"],"username":"test87"}}*/
+				};			
+			
+			function mergeDB(recived){
+				var i = null;
+				var clientList = $('#clientList ul');//.empty();
+				for(i in recived){
+					if(adminChatMessageLog[i] && adminChatMessageLog[i].username){
+						adminChatMessageLog[i].messages = adminChatMessageLog[i].messages.concat(recived[i].messages);
+						adminChatMessageLog[i].username = recived[i].username;
+					}else{
+						adminChatMessageLog[i] = recived[i];
+						clientList.append('<li>' + 
+								'<span class="customerID"> ' + i + '</span>: ' +
+								'<span class="customerName">'+ adminChatMessageLog[i].username +'</span>'+
+							'</li>');
+						updateUserListListerners();
+					}
+
+				}
+				if(currentUserID == null && i != null)
+					currentUserID = i;
+
+				return adminChatMessageLog;
+			}
+
+			function messagePullLoop(){
+				$.ajax({
+					type: "GET",
+					url: "/rest/chat?admin=true"
+				})
+				.success(function(userObj) {					
+					console.log("Reciving: " + JSON.stringify(userObj));
+					mergeDB(userObj);
+					if(userObj != {})
+						updateChatWindow();					
+
+					messagePullLoop();
+			  	})
+				.fail(function(jqXHR, textStatus) {
+					$("#chatMessages").text(":( the chat is down...");
+					window.setTimeout(messagePullLoop, 2000);
+					console.log("Error reciving: " + textStatus);
+				});
+			}
+
+			function sendMessage(){
+				var input = $('#messageControl>input')
+				var message = input.val();
+
+				if(!currentUserID)
+					return;
+
+				$.ajax({
+					type: "POST",
+					url: "/rest/chat?id=" +  currentUserID,
+					contentType: "text/plain",
+					data: message
+				}).then(function(){
+					input.val('');
+					adminChatMessageLog[currentUserID].messages.push({
+							'message': message,
+							type: 'self'
+						});
+					$("#clientChat ul").append('<li class="self">' + message + '</li>');	
+				},function( jqXHR, textStatus ) {
+					alert("Error sending :(");
+				});
+			}
+
+		</script>
+	</head>
+	<body>
+		<div id="clientList">
+			<h1>Kunder</h1>
+			<div>
+				<ul>
+<!--				<li>
+						<span class="customerID">001</span>: 
+						<span class="customerName">hans</span>
+					</li>
+					<li>
+						<span class="customerID">002</span>: 
+						<span class="customerName">Torben</span>
+					</li>
+					<li>
+						<span class="customerID">003</span>: 
+						<span class="customerName">Jens</span>
+					</li>
+					<li>
+						<span class="customerID">004</span>: 
+						<span class="customerName">Mette</span>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<div id="clientChat">
+			<h1>Chat</h1>
+			<div>
+				<div>
+					<ul>
+<!--					<li>msg</li>
+						<li class="self">msg</li>
+						<li>msg</li>
+						<li>msg</li>
+						<li class="self">msg</li>
+						<li>msg</li>-->
+					</ul>
+				</div>
+				<div id="messageControl">
+					message:
+					<input>
+					<button>send</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</head>
